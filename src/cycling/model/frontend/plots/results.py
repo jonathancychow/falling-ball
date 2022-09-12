@@ -33,7 +33,7 @@ def simulation_results_plot(baseline_data, experiment_data=None):
         figure.add_trace(go.Scatter(x=experiment_data['distance'], y=experiment_data['velocity'],
                                     name="Experiment: {}".format(experiment_race_time), opacity=0.5,
                                     line={'color': experiment_color}),
-                         row=2, col=1)
+                         row=1, col=1)
         # figure.add_trace(
         #     go.Scatter(x=experiment_data['distance'], y=experiment_data['w_prime_balance'], opacity=0.5,
         #                line={'color': experiment_color},

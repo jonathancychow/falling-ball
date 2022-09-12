@@ -8,12 +8,12 @@ from cycling.model.frontend.plots.results import simulation_results_plot
 import numpy as np
 from cycling.model.core.bike import Bike
 from cycling.model.core.environment import Environment
-from cycling.model.core.rider import Rider
+from cycling.model.core.ball import Ball
 from cycling.model.core.stage import Stage
 from cycling.model.core.simulation import Simulation
 from cycling.model.core.critical_power import CriticalPowerModel
 from cycling.model.etl.utils import interpolate
-from cycling.model.frontend.app import rider_data, bike_data
+from cycling.model.frontend.app import ball_data, bike_data
 
 callback_suffix = 'experiment'
 
@@ -51,8 +51,8 @@ def toggle_collapse(n, is_open):
     ],
 )
 def on_rider_select(rider_name):
-    if rider_name in rider_data.keys():
-        return rider_data[rider_name].mass, rider_data[rider_name].cp, rider_data[rider_name].w_prime
+    if rider_name in ball_data.keys():
+        return ball_data[rider_name].mass, ball_data[rider_name].cp, ball_data[rider_name].w_prime
     else:
         return None, None, None
 
@@ -153,7 +153,7 @@ def generate_experiment(
 
     # Run simulation
     env = Environment()
-    rider = Rider(name=rider_name, mass=rider_weight, cda=0)
+    rider = Ball(name=rider_name, mass=rider_weight, cda=0)
     bike = Bike(
         name=bike_name,
         mass=bike_weight,
@@ -187,6 +187,7 @@ def generate_experiment(
     experiment_data['rider_name'] = rider_name
     experiment_data['bike_name'] = bike_name
     experiment_data['experiment_name'] = experiment_name
+    print("Done with sim")
 
     figure = simulation_results_plot(baseline_data, experiment_data)
     return dcc.Graph(figure=figure), experiment_data

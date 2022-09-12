@@ -11,12 +11,12 @@ else:
     bootswatch_theme = dbc.themes.BOOTSTRAP
 
 # Mock rider database
-RiderData = namedtuple(
+BallData = namedtuple(
     'RiderData', [
         'mass', 'cda', 'cp', 'w_prime', 'seat_to_ground'])  # schema
-rider_data = {
-    "Sam": RiderData(
-        mass=64,
+ball_data = {
+    "Sam": BallData(
+        mass=5,
         cda=None,
         cp=360,
         w_prime=19800,
@@ -50,7 +50,7 @@ bike_data = {
         eff_drive=0.974)}
 
 rider_options = sorted([{"label": key, "value": key}
-                        for key in rider_data.keys()], key=lambda x: x['value'])
+                        for key in ball_data.keys()], key=lambda x: x['value'])
 bike_options = sorted([{"label": key, "value": key}
                        for key in bike_data.keys()], key=lambda x: x['value'])
 power_options = [{"label": "Constant", "value": "Constant"}]

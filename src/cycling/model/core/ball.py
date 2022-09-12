@@ -1,4 +1,4 @@
-class Rider:
+class Ball:
     def __init__(self, name, mass, cda, cp=380, w_prime=19800):
         self.name = name
         self.mass = mass
