@@ -13,13 +13,13 @@ def rider_data_form(callback_suffix):
     rider_data = [
         dbc.FormGroup(
             children=[
-                dbc.Label("Weight (30 - 100 kg):"),
+                dbc.Label("Weight (0.5 - 100 kg):"),
                 dbc.Input(
-                    id=f"rider_weight_{callback_suffix}",
+                    id=f"ball_weight_{callback_suffix}",
                     type="number",
-                    min=30,
+                    min=0.5,
                     max=100,
-                    step=0.1),
+                    step=0.5),
             ]),
         dbc.FormGroup(
             children=[
@@ -33,9 +33,10 @@ def rider_data_form(callback_suffix):
                     dbc.Card(
                         dbc.FormGroup(
                             children=[
-                                dbc.Label("Critical power (W):"),
+                                dbc.Label("Radius (0.1 - 10 m):"),
                                 dbc.Input(
-                                    id=f"rider_cp_{callback_suffix}",
+                                    # id=f"rider_cp_{callback_suffix}",
+                                    id=f"ball_radius_{callback_suffix}",
                                     type="number",
                                     min=50,
                                     max=500,

@@ -42,8 +42,8 @@ def toggle_collapse(n, is_open):
 
 @app.callback(
     [
-        Output(f"rider_weight_{callback_suffix}", "value"),
-        Output(f"rider_cp_{callback_suffix}", "value"),
+        Output(f"ball_weight_{callback_suffix}", "value"),
+        Output(f"ball_radius_{callback_suffix}", "value"),
         Output(f"rider_w_prime_{callback_suffix}", "value")
     ],
     [
@@ -96,7 +96,7 @@ def on_power_select(power_type):
         Output("btn_experiment_nestor", "disabled"),
     ],
     [
-        Input(f"rider_weight_{callback_suffix}", "value"),
+        Input(f"ball_weight_{callback_suffix}", "value"),
         Input(f"bike_weight_{callback_suffix}", "value"),
         Input(f"bike_cda_{callback_suffix}", "value"),
         Input(f"bike_crr_{callback_suffix}", "value"),
@@ -119,8 +119,8 @@ def check_validity(*args):
     ],
     [
         State(f"rider_select_{callback_suffix}", "value"),
-        State(f"rider_weight_{callback_suffix}", "value"),
-        State(f"rider_cp_{callback_suffix}", "value"),
+        State(f"ball_weight_{callback_suffix}", "value"),
+        State(f"ball_radius_{callback_suffix}", "value"),
         State(f"rider_w_prime_{callback_suffix}", "value"),
         State(f"bike_select_{callback_suffix}", "value"),
         State(f"bike_weight_{callback_suffix}", "value"),
