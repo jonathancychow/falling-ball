@@ -186,9 +186,9 @@ def generate_baseline(
 
     seconds = np.arange(0, int(time[-1] + 1))
     power_per_second = power_target * np.ones(len(seconds))
-    cpm = CriticalPowerModel(cp=rider_cp, w_prime=rider_w_prime)
-    w_prime_balance_per_second = cpm.w_prime_balance(power=power_per_second)
-    w_prime_balance = interpolate(seconds, w_prime_balance_per_second, time)
+    # cpm = CriticalPowerModel(cp=rider_cp, w_prime=rider_w_prime)
+    # w_prime_balance_per_second = cpm.w_prime_balance(power=power_per_second)
+    # w_prime_balance = interpolate(seconds, w_prime_balance_per_second, time)
     
     baseline_data = dict()
     baseline_data['time'] = time.tolist()
@@ -197,7 +197,7 @@ def generate_baseline(
     baseline_data['velocity'] = velocity.tolist()
     # baseline_data['elevation'] = stage.elevation.tolist()
     baseline_data['elevation'] = distance.tolist()
-    baseline_data['w_prime_balance'] = w_prime_balance
+    # baseline_data['w_prime_balance'] = w_prime_balance
     baseline_data['rider_name'] = rider_name
     baseline_data['bike_name'] = bike_name
     baseline_data['experiment_name'] = "baseline"

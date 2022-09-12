@@ -163,27 +163,40 @@ def generate_experiment(
         100,
         crr=bike_crr)
 
-    stage = Stage(name='Stage', file_name=f'{selected_stage}.csv', s_step=50)
+    # stage = Stage(name='Stage', file_name=f'{selected_stage}.csv', s_step=50)
+    stage = None
+
+    distance = np.arange(0, 5000, 5)
     simulation = Simulation(
         rider=rider,
         bike_1=bike,
         stage=stage,
         environment=env)
 
-    power = power_target * np.ones(len(stage.distance))
+    # power = power_target * np.ones(len(stage.distance))
+    power = 0 * np.ones(len(distance))
+
+    # velocity, time, _, _ = simulation.solve_velocity_and_time(
+    #     s=stage.distance, power=power, v0=0.1, t0=0)
+
     velocity, time, _, _ = simulation.solve_velocity_and_time(
-        s=stage.distance, power=power, v0=0.1, t0=0)
+        s=distance, power=power, v0=0.1, t0=0)
+
     seconds = np.arange(0, int(time[-1] + 1))
     power_per_second = power_target * np.ones(len(seconds))
-    cpm = CriticalPowerModel(cp=rider_cp, w_prime=rider_w_prime)
-    w_prime_balance_per_second = cpm.w_prime_balance(power=power_per_second)
-    w_prime_balance = interpolate(seconds, w_prime_balance_per_second, time)
+    # cpm = CriticalPowerModel(cp=rider_cp, w_prime=rider_w_prime)
+    # w_prime_balance_per_second = cpm.w_prime_balance(power=power_per_second)
+    # w_prime_balance = interpolate(seconds, w_prime_balance_per_second, time)
     experiment_data = dict()
     experiment_data['time'] = time.tolist()
-    experiment_data['distance'] = stage.distance.tolist()
+    # experiment_data['distance'] = stage.distance.tolist()
+    experiment_data['distance'] = distance.tolist()
+
     experiment_data['velocity'] = velocity.tolist()
-    experiment_data['elevation'] = stage.elevation.tolist()
-    experiment_data['w_prime_balance'] = w_prime_balance
+    # experiment_data['elevation'] = stage.elevation.tolist()
+    experiment_data['elevation'] = distance.tolist()
+
+    # experiment_data['w_prime_balance'] = w_prime_balance
     experiment_data['rider_name'] = rider_name
     experiment_data['bike_name'] = bike_name
     experiment_data['experiment_name'] = experiment_name
@@ -201,7 +214,9 @@ def generate_experiment(
 def update_table(baseline_data, experiment_data, data):
     baseline_data = pd.DataFrame(baseline_data)
     baseline_data = baseline_data[[
-        'experiment_name', 'rider_name', 'bike_name', 'time', 'w_prime_balance']]
+        'experiment_name', 'rider_name', 'bike_name', 'time', 
+        # 'w_prime_balance'
+        ]]
 
     if data is None:
         data = baseline_data.tail(1)
@@ -209,47 +224,49 @@ def update_table(baseline_data, experiment_data, data):
     if experiment_data is not None:
         experiment_data = pd.DataFrame(experiment_data)
         experiment_data = experiment_data[[
-            'experiment_name', 'rider_name', 'bike_name', 'time', 'w_prime_balance']]
+            'experiment_name', 'rider_name', 'bike_name', 'time', 
+            # 'w_prime_balance'
+            ]]
         experiment_data = experiment_data.tail(1)
         data = data.append(experiment_data, ignore_index=True)
         baseline_time = data['time'].iloc[0]
-        baseline_pb = data['w_prime_balance'].iloc[0]
-        style_data_conditional = [
-            {
-                'if': {
-                    'column_id': 'time',
-                    'filter_query': '{time} < ' + str(baseline_time)
-                },
-                'backgroundColor': '#3D9970',
-                'color': 'white',
-            },
-            {
-                'if': {
-                    'column_id': 'w_prime_balance',
-                    'filter_query': '{w_prime_balance} >' + str(baseline_pb)
-                },
-                'backgroundColor': '#3D9970',
-                'color': 'white',
-            },
-            {
-                'if': {
-                    'column_id': 'time',
-                    'filter_query': '{time} > ' + str(baseline_time)
-                },
-                'backgroundColor': '#e0001c',
-                'color': 'white',
-            },
-            {
-                'if': {
-                    'column_id': 'w_prime_balance',
-                    'filter_query': '{w_prime_balance} < ' + str(baseline_pb)
-                },
-                'backgroundColor': '#e0001c',
-                'color': 'white',
-            }
-        ]
-    else:
-        style_data_conditional = []
+    #     baseline_pb = data['w_prime_balance'].iloc[0]
+    #     style_data_conditional = [
+    #         {
+    #             'if': {
+    #                 'column_id': 'time',
+    #                 'filter_query': '{time} < ' + str(baseline_time)
+    #             },
+    #             'backgroundColor': '#3D9970',
+    #             'color': 'white',
+    #         },
+    #         {
+    #             'if': {
+    #                 'column_id': 'w_prime_balance',
+    #                 'filter_query': '{w_prime_balance} >' + str(baseline_pb)
+    #             },
+    #             'backgroundColor': '#3D9970',
+    #             'color': 'white',
+    #         },
+    #         {
+    #             'if': {
+    #                 'column_id': 'time',
+    #                 'filter_query': '{time} > ' + str(baseline_time)
+    #             },
+    #             'backgroundColor': '#e0001c',
+    #             'color': 'white',
+    #         },
+    #         {
+    #             'if': {
+    #                 'column_id': 'w_prime_balance',
+    #                 'filter_query': '{w_prime_balance} < ' + str(baseline_pb)
+    #             },
+    #             'backgroundColor': '#e0001c',
+    #             'color': 'white',
+    #         }
+    #     ]
+    # else:
+    #     style_data_conditional = []
 
     unit = ['', '', '', u's', u'J']
     table = dash_table.DataTable(
@@ -267,7 +284,7 @@ def update_table(baseline_data, experiment_data, data):
         editable=True,
         style_as_list_view=True,
         style_header={'fontWeight': 'bold'},
-        style_data_conditional=style_data_conditional
+        # style_data_conditional=style_data_conditional
     )
 
     return table  # , data TODO: still needs to be fixed

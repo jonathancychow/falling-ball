@@ -38,9 +38,9 @@ def rider_data_form(callback_suffix):
                                     # id=f"rider_cp_{callback_suffix}",
                                     id=f"ball_radius_{callback_suffix}",
                                     type="number",
-                                    min=50,
-                                    max=500,
-                                    step=1),
+                                    min=0.01,
+                                    max=10,
+                                    step=0.01),
                                 html.Div([
                                     html.A('Learn more',
                                            href='https://sporttracks.mobi/blog/critical-power-training',
