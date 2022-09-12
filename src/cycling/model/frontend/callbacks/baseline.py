@@ -161,26 +161,28 @@ def generate_baseline(
         100,
         crr=bike_crr)
 
-    stage = Stage(name='Stage', file_name=f'{selected_stage}.csv', s_step=50)
-    # stage = None
+    # stage = Stage(name='Stage', file_name=f'{selected_stage}.csv', s_step=50)
+    stage = None
 
-    distance = np.arange(500, 0, 5)
+    distance = np.arange(0, 5000, 5)
     simulation = Simulation(
         rider=rider,
         bike_1=bike,
         stage=stage,
         environment=env)
 
-    power = power_target * np.ones(len(stage.distance))
-    # power = 0 * np.ones(len(distance))
-    velocity, time, _, _ = simulation.solve_velocity_and_time(
-        s=stage.distance, power=power, v0=0.1, t0=0)
+    # power = power_target * np.ones(len(stage.distance))
+    power = 0 * np.ones(len(distance))
+    print(f"{distance[0]} : {distance[-1]}")
+
     # velocity, time, _, _ = simulation.solve_velocity_and_time(
-    #     s=distance, 
-    #     power=power, 
-    #     v0=0.1, 
-    #     t0=0
-    #     )
+    #     s=stage.distance, power=power, v0=0.1, t0=0)
+    velocity, time, _, _ = simulation.solve_velocity_and_time(
+        s=distance, 
+        power=power, 
+        v0=0.1, 
+        t0=0
+        )
 
     seconds = np.arange(0, int(time[-1] + 1))
     power_per_second = power_target * np.ones(len(seconds))
@@ -190,10 +192,11 @@ def generate_baseline(
     
     baseline_data = dict()
     baseline_data['time'] = time.tolist()
-    baseline_data['distance'] = stage.distance.tolist()
-    # baseline_data['distance'] = distance.tolist()
+    # baseline_data['distance'] = stage.distance.tolist()
+    baseline_data['distance'] = distance.tolist()
     baseline_data['velocity'] = velocity.tolist()
-    baseline_data['elevation'] = stage.elevation.tolist()
+    # baseline_data['elevation'] = stage.elevation.tolist()
+    baseline_data['elevation'] = distance.tolist()
     baseline_data['w_prime_balance'] = w_prime_balance
     baseline_data['rider_name'] = rider_name
     baseline_data['bike_name'] = bike_name
