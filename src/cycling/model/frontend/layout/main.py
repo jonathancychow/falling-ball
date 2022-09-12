@@ -7,7 +7,7 @@ logo_image = '/assets/img/bike.svg'
 nav_links = dbc.Row(
     children=[],
     id='nav-items',
-    # no_gutters=True,
+    no_gutters=True,
     className="ml-auto flex-nowrap mt-3 mt-md-0",
     align="center",
 )
@@ -21,7 +21,7 @@ navbar = dbc.Navbar(
                     dbc.Col(html.Img(src=logo_image, height="30px", className='ml-2'))
                 ],
                 align="center",
-                # no_gutters=True,
+                no_gutters=True,
             ),
             href="/",
         ),

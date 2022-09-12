@@ -146,7 +146,8 @@ def generate_baseline(
         bike_gradient_climbing,
         bike_crr,
         power_target,
-        selected_stage):
+        selected_stage
+        ):
 
     # Run simulation
     env = Environment()
@@ -161,6 +162,9 @@ def generate_baseline(
         crr=bike_crr)
 
     stage = Stage(name='Stage', file_name=f'{selected_stage}.csv', s_step=50)
+    # stage = None
+
+    distance = np.arange(500, 0, 5)
     simulation = Simulation(
         rider=rider,
         bike_1=bike,
@@ -168,16 +172,26 @@ def generate_baseline(
         environment=env)
 
     power = power_target * np.ones(len(stage.distance))
+    # power = 0 * np.ones(len(distance))
     velocity, time, _, _ = simulation.solve_velocity_and_time(
         s=stage.distance, power=power, v0=0.1, t0=0)
+    # velocity, time, _, _ = simulation.solve_velocity_and_time(
+    #     s=distance, 
+    #     power=power, 
+    #     v0=0.1, 
+    #     t0=0
+    #     )
+
     seconds = np.arange(0, int(time[-1] + 1))
     power_per_second = power_target * np.ones(len(seconds))
     cpm = CriticalPowerModel(cp=rider_cp, w_prime=rider_w_prime)
     w_prime_balance_per_second = cpm.w_prime_balance(power=power_per_second)
     w_prime_balance = interpolate(seconds, w_prime_balance_per_second, time)
+    
     baseline_data = dict()
     baseline_data['time'] = time.tolist()
     baseline_data['distance'] = stage.distance.tolist()
+    # baseline_data['distance'] = distance.tolist()
     baseline_data['velocity'] = velocity.tolist()
     baseline_data['elevation'] = stage.elevation.tolist()
     baseline_data['w_prime_balance'] = w_prime_balance

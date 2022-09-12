@@ -158,7 +158,7 @@ def rider_data_form(callback_suffix):
                 dbc.Input(
                     id=f"power_target_{callback_suffix}",
                     type="number",
-                    min=50,
+                    min=0,
                     max=800,
                     step=1),
             ])]

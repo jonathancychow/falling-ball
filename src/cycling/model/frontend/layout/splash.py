@@ -3,7 +3,7 @@ import dash_bootstrap_components as dbc
 import dash_core_components as dcc
 
 splash_layout =[
-    dbc.Container(
+    dbc.Jumbotron(
     children=[
         html.H1("Cycling Simulation", className="display-3", style={"text-align": "left"}),
         html.P("Model to simulate performance for cycling time trial", className="lead", style={"text-align": "left"}),
