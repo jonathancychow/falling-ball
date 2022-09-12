@@ -6,7 +6,7 @@ import dash_html_components as html
 def rider_data_form(callback_suffix):
     # rider fields
     rider_select = dbc.Select(
-        id=f"rider_select_{callback_suffix}",
+        id=f"ball_select_{callback_suffix}",
         options=rider_options,
         value="Sam"
     )
@@ -41,21 +41,21 @@ def rider_data_form(callback_suffix):
                                     min=0.01,
                                     max=10,
                                     step=0.01),
-                                html.Div([
-                                    html.A('Learn more',
-                                           href='https://sporttracks.mobi/blog/critical-power-training',
-                                           target='_blank')]),
-                                dbc.Label("Anaerobic work capacity - W' (J):"),
-                                dbc.Input(
-                                    id=f"rider_w_prime_{callback_suffix}",
-                                    type="number",
-                                    min=10000,
-                                    max=30000,
-                                    step=10),
-                                html.Div([
-                                    html.A('Learn more',
-                                           href="https://pezcyclingnews.com/toolbox/the-anaerobic-w/",
-                                           target='_blank')]),
+                                # html.Div([
+                                #     html.A('Learn more',
+                                #            href='https://sporttracks.mobi/blog/critical-power-training',
+                                #            target='_blank')]),
+                                # dbc.Label("Anaerobic work capacity - W' (J):"),
+                                # dbc.Input(
+                                #     id=f"rider_w_prime_{callback_suffix}",
+                                #     type="number",
+                                #     min=10000,
+                                #     max=30000,
+                                #     step=10),
+                                # html.Div([
+                                #     html.A('Learn more',
+                                #            href="https://pezcyclingnews.com/toolbox/the-anaerobic-w/",
+                                #            target='_blank')]),
                             ]),
                     ),
                     id=f"collapse_{callback_suffix}",

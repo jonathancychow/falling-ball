@@ -44,15 +44,15 @@ def toggle_collapse(n, is_open):
     [
         Output(f"ball_weight_{callback_suffix}", "value"),
         Output(f"ball_radius_{callback_suffix}", "value"),
-        Output(f"rider_w_prime_{callback_suffix}", "value")
+        # Output(f"rider_w_prime_{callback_suffix}", "value")
     ],
     [
-        Input(f"rider_select_{callback_suffix}", "value"),
+        Input(f"ball_select_{callback_suffix}", "value"),
     ],
 )
-def on_rider_select(rider_name):
+def on_ball_select(rider_name):
     if rider_name in ball_data.keys():
-        return ball_data[rider_name].mass, ball_data[rider_name].cp, ball_data[rider_name].w_prime
+        return ball_data[rider_name].mass, ball_data[rider_name].cp
     else:
         return None, None, None
 
@@ -118,10 +118,10 @@ def check_validity(*args):
         Input("btn_experiment", "n_clicks_timestamp")
     ],
     [
-        State(f"rider_select_{callback_suffix}", "value"),
+        State(f"ball_select_{callback_suffix}", "value"),
         State(f"ball_weight_{callback_suffix}", "value"),
         State(f"ball_radius_{callback_suffix}", "value"),
-        State(f"rider_w_prime_{callback_suffix}", "value"),
+        # State(f"rider_w_prime_{callback_suffix}", "value"),
         State(f"bike_select_{callback_suffix}", "value"),
         State(f"bike_weight_{callback_suffix}", "value"),
         State(f"bike_cda_{callback_suffix}", "value"),
@@ -139,7 +139,7 @@ def generate_experiment(
         rider_name,
         rider_weight,
         rider_cp,
-        rider_w_prime,
+        # rider_w_prime,
         bike_name,
         bike_weight,
         bike_cda,
