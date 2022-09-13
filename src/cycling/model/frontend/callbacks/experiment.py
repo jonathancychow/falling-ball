@@ -140,10 +140,10 @@ def generate_experiment(
         ball_weight,
         ball_radius,
         ball_cd,
-        bike_name,
-        bike_weight,
-        bike_cda,
-        bike_cda_climbing,
+        planet_name,
+        planet_gravity,
+        planet_mass,
+        planet_radius,
         bike_gradient_climbing,
         bike_crr,
         power_target,
@@ -155,10 +155,10 @@ def generate_experiment(
     env = Environment()
     ball = Ball(name=ball_name, mass=ball_weight, radius=ball_radius, cda=ball_cd)
     bike = Bike(
-        name=bike_name,
-        mass=bike_weight,
-        cda=bike_cda,
-        cda_climb=bike_cda_climbing,
+        name=ball_name,
+        mass=1,
+        cda=1,
+        cda_climb=1,
         r_gradient_switch=bike_gradient_climbing /
         100,
         crr=bike_crr)
@@ -198,7 +198,7 @@ def generate_experiment(
 
     # experiment_data['w_prime_balance'] = w_prime_balance
     experiment_data['rider_name'] = ball_name
-    experiment_data['bike_name'] = bike_name
+    experiment_data['bike_name'] = planet_name
     experiment_data['experiment_name'] = experiment_name
     print("Done with sim")
 

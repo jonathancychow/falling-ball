@@ -27,7 +27,7 @@ class Simulation:
         self.bike_1 = bike_1
 
         self.stage = stage
-        self.environment = environment
+        self._environment = environment
 
         # self.bike_1_total_mass = self.rider.mass + self.bike_1.mass
         # self.bike_1_total_cda = self.rider.cda + self.bike_1.cda
@@ -57,9 +57,12 @@ class Simulation:
         rho = 1
         r = 0.05
 
+        print(f"Air density : {self._environment.air_density}")
+
         f_weight = self._ball.mass * g 
         import math
         f_drag = (self._ball.cda * rho * math.pi * (self._ball.radius**2) * (v **2))
+        # f_drag = (self._ball.cda * self._environment.air_density * math.pi * (self._ball.radius**2) * (v **2))
         g_vert = 1 / self._ball.mass * ( f_weight - f_drag )  
 
         # dvds = g_long / v

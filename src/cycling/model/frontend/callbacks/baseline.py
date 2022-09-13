@@ -139,24 +139,27 @@ def generate_baseline(
         ball_weight,
         ball_radius,
         ball_cd,
-        bike_name,
-        bike_weight,
-        bike_cda,
-        bike_cda_climbing,
+        planet_name,
+        planet_gravity,
+        planet_mass,
+        planet_radius,
         bike_gradient_climbing,
+        planet_air_density,
         bike_crr,
-        power_target,
         selected_stage
         ):
 
     # Run simulation
-    env = Environment()
+    env = Environment(
+        gravity=planet_gravity,
+        air_density=planet_air_density
+    )
     ball = Ball(name=ball_name, mass=ball_weight, radius=ball_radius, cda=ball_cd)
     bike = Bike(
-        name=bike_name,
-        mass=bike_weight,
-        cda=bike_cda,
-        cda_climb=bike_cda_climbing,
+        name=planet_name,
+        mass=planet_gravity,
+        cda=planet_mass,
+        cda_climb=planet_mass,
         r_gradient_switch=bike_gradient_climbing /
         100,
         crr=bike_crr)
@@ -185,7 +188,7 @@ def generate_baseline(
         )
 
     seconds = np.arange(0, int(time[-1] + 1))
-    power_per_second = power_target * np.ones(len(seconds))
+    # power_per_second = power_target * np.ones(len(seconds))
     # cpm = CriticalPowerModel(cp=rider_cp, w_prime=rider_w_prime)
     # w_prime_balance_per_second = cpm.w_prime_balance(power=power_per_second)
     # w_prime_balance = interpolate(seconds, w_prime_balance_per_second, time)
@@ -199,7 +202,7 @@ def generate_baseline(
     baseline_data['elevation'] = distance.tolist()
     # baseline_data['w_prime_balance'] = w_prime_balance
     baseline_data['rider_name'] = ball_name
-    baseline_data['bike_name'] = bike_name
+    baseline_data['bike_name'] = planet_name
     baseline_data['experiment_name'] = "baseline"
 
     figure = simulation_results_plot(baseline_data)
