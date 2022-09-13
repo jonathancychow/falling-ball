@@ -53,9 +53,9 @@ bike_data = {
         track_mu=0.0025,
         eff_drive=0.974)}
 
-rider_options = sorted([{"label": key, "value": key}
+ball_options = sorted([{"label": key, "value": key}
                         for key in ball_data.keys()], key=lambda x: x['value'])
-bike_options = sorted([{"label": key, "value": key}
+planet_options = sorted([{"label": key, "value": key}
                        for key in bike_data.keys()], key=lambda x: x['value'])
 power_options = [{"label": "Constant", "value": "Constant"}]
 

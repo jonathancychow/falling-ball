@@ -1,12 +1,12 @@
 import dash_bootstrap_components as dbc
-from cycling.model.frontend.app import rider_options, bike_options, power_options
+from cycling.model.frontend.app import ball_options, planet_options, power_options
 import dash_html_components as html
 
 
 def ball_data_form(callback_suffix):
     ball_select = dbc.Select(
         id=f"ball_select_{callback_suffix}",
-        options=rider_options,
+        options=ball_options,
         value="Sam"
     )
     ball_data = [
@@ -69,7 +69,7 @@ def ball_data_form(callback_suffix):
             suffix = suffix + '_transition'
         bike_select = dbc.Select(
             id=f"planet_select_{suffix}",
-            options=bike_options,
+            options=planet_options,
             value="Earth"
         )
         return bike_select
@@ -174,7 +174,7 @@ def ball_data_form(callback_suffix):
             children=[
                 dbc.Col(
                     children=[
-                        dbc.Label("Rider:"),
+                        dbc.Label("Ball:"),
                         ball_select
                     ],
                     md=3
@@ -190,7 +190,7 @@ def ball_data_form(callback_suffix):
             children=[
                 dbc.Col(
                     children=[
-                        dbc.Label("Bike:"),
+                        dbc.Label("Planet:"),
                         get_bike_select(callback_suffix)
                     ],
                     md=3
