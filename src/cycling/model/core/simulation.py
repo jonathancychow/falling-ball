@@ -22,16 +22,16 @@ class Simulation:
 
     """
 
-    def __init__(self, rider, stage, environment, bike_1):
-        self.rider = rider
+    def __init__(self, ball, stage, environment, bike_1):
+        self._ball = ball
         self.bike_1 = bike_1
 
         self.stage = stage
         self.environment = environment
 
-        self.bike_1_total_mass = self.rider.mass + self.bike_1.mass
-        self.bike_1_total_cda = self.rider.cda + self.bike_1.cda
-        self.bike_1_total_cda_climb = self.rider.cda + self.bike_1.cda_climb
+        # self.bike_1_total_mass = self.rider.mass + self.bike_1.mass
+        # self.bike_1_total_cda = self.rider.cda + self.bike_1.cda
+        # self.bike_1_total_cda_climb = self.rider.cda + self.bike_1.cda_climb
 
     def velocity_and_time_ode(self, s, x, power):
         v = x[0]
@@ -57,9 +57,9 @@ class Simulation:
         rho = 1
         r = 0.05
 
-        f_weight = m * g 
+        f_weight = self._ball.mass * g 
         import math
-        f_drag = (cd * rho * math.pi * (r**2) * (v **2))
+        f_drag = (self._ball.cda * rho * math.pi * (self._ball.radius**2) * (v **2))
         g_vert = 1 / m * ( f_weight - f_drag )  
 
         # dvds = g_long / v

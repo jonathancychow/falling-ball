@@ -135,9 +135,9 @@ def check_validity(*args):
 )
 def generate_baseline(
         n_clicks_time,
-        rider_name,
-        rider_weight,
-        rider_cp,
+        ball_name,
+        ball_weight,
+        ball_radius,
         # rider_w_prime,
         bike_name,
         bike_weight,
@@ -151,7 +151,7 @@ def generate_baseline(
 
     # Run simulation
     env = Environment()
-    rider = Ball(name=rider_name, mass=rider_weight, cda=0)
+    ball = Ball(name=ball_name, mass=ball_weight, radius=ball_radius, cda=0.1)
     bike = Bike(
         name=bike_name,
         mass=bike_weight,
@@ -166,7 +166,7 @@ def generate_baseline(
 
     distance = np.arange(0, 5000, 5)
     simulation = Simulation(
-        rider=rider,
+        ball=ball,
         bike_1=bike,
         stage=stage,
         environment=env)
@@ -198,7 +198,7 @@ def generate_baseline(
     # baseline_data['elevation'] = stage.elevation.tolist()
     baseline_data['elevation'] = distance.tolist()
     # baseline_data['w_prime_balance'] = w_prime_balance
-    baseline_data['rider_name'] = rider_name
+    baseline_data['rider_name'] = ball_name
     baseline_data['bike_name'] = bike_name
     baseline_data['experiment_name'] = "baseline"
 
