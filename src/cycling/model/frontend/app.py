@@ -32,28 +32,28 @@ ball_data = {
 
 # Mock bike database
 PlanetData = namedtuple('BikeData',
-                      ['mass',
-                       'cda',
-                       'cda_climbing',
+                      ['gravity',
+                       'mass',
+                       'radius',
                        'gradient_climbing',
-                       'crr',
+                       'rho',
                        'track_mu',
                        'eff_drive'])  # schema
 planet_data = {
     "Earth": PlanetData(
-        mass=6.47,
-        cda=0.3,
-        cda_climbing=0.3,
+        gravity=9.81,
+        mass=5.972e24,
+        radius=6371000,
         gradient_climbing=5,
-        crr=0.003,
+        rho=1.2,
         track_mu=0.0025,
         eff_drive=0.974),
     "Mars": PlanetData(
-        mass=8.20,
-        cda=0.22,
-        cda_climbing=0.3,
+        gravity=8.20,
+        mass=6.39e23,
+        radius=3389000,
         gradient_climbing=5,
-        crr=0.003,
+        rho=0.003,
         track_mu=0.0025,
         eff_drive=0.974)}
 

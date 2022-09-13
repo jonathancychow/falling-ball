@@ -66,10 +66,10 @@ def on_ball_select(rider_name):
         Input(f"planet_select_{callback_suffix}", "value"),
     ],
 )
-def on_planet_select(bike_name):
-    if bike_name in planet_data.keys():
-        return planet_data[bike_name].mass, planet_data[bike_name].cda, planet_data[
-            bike_name].cda_climbing, planet_data[bike_name].gradient_climbing, planet_data[bike_name].crr
+def on_planet_select(planet_name):
+    if planet_name in planet_data.keys():
+        return planet_data[planet_name].gravity, planet_data[planet_name].mass, planet_data[
+            planet_name].radius, planet_data[planet_name].gradient_climbing, planet_data[planet_name].rho
     else:
         return None, None, None, None, None
 

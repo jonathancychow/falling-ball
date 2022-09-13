@@ -64,9 +64,9 @@ def ball_data_form(callback_suffix):
     ball_data_form = dbc.Form(ball_data)
 
     # planet fields
-    def get_planet_select(suffix, transition=False):
-        if transition:
-            suffix = suffix + '_transition'
+    def get_planet_select(suffix):
+        # if transition:
+        #     suffix = suffix + '_transition'
         bike_select = dbc.Select(
             id=f"planet_select_{suffix}",
             options=planet_options,
@@ -74,11 +74,11 @@ def ball_data_form(callback_suffix):
         )
         return bike_select
 
-    def get_planet_data_form(suffix, transition=False):
-        if transition:
-            suffix = suffix + '_transition'
+    def get_planet_data_form(suffix):
+        # if transition:
+            # suffix = suffix + '_transition'
 
-        bike_data = [
+        planet_data = [
             dbc.FormGroup(
                 children=[
                     dbc.Label("Gravity (m/s/s)):"),
@@ -88,7 +88,7 @@ def ball_data_form(callback_suffix):
                         type="number",
                         min=5,
                         max=20,
-                        step=0.1),
+                        step=0.01),
                 ]),
             dbc.FormGroup(
                 children=[
@@ -114,14 +114,14 @@ def ball_data_form(callback_suffix):
                                     #     html.A('Learn more',
                                     #             href='https://ridefar.info/bike/cycling-speed/rolling-resistance/',
                                     #             target='_blank')]),
-                                    dbc.Label("Planet Mass (m):"),
+                                    dbc.Label("Planet Mass (kg):"),
                                     dbc.Input(
                                         # id=f"bike_cda_{suffix}",
                                         id=f"planet_mass_{suffix}",
                                         type="number",
-                                        min=0,
-                                        max=1,
-                                        step=0.01),
+                                        min=1,
+                                        max=10000000,
+                                        step=1),
                                     # html.Div([
                                     #     html.A('Learn more',
                                     #             href='https://notio.ai/blogs/blog/what-is-cda-and-why-is-it-important-as-a-cyclist-to-measure-it',
@@ -131,9 +131,9 @@ def ball_data_form(callback_suffix):
                                         id=f"planet_raidus_{suffix}",
                                         # id=f"bike_cda_climbing_{suffix}",
                                         type="number",
-                                        min=0,
-                                        max=1,
-                                        step=0.01),
+                                        min=1,
+                                        max=1000000000,
+                                        step=1),
                                     dbc.Label("Climbing position gradient (%):"),
                                     dbc.Input(
                                         id=f"bike_gradient_climbing_{suffix}",
@@ -147,7 +147,7 @@ def ball_data_form(callback_suffix):
                     ),
                 ]),
         ]
-        return dbc.Form(bike_data)
+        return dbc.Form(planet_data)
 
     # power fields
     power_select = dbc.Select(
@@ -185,7 +185,7 @@ def ball_data_form(callback_suffix):
                 )
             ],
         ),
-        # bike
+        # planet
         dbc.Row(
             children=[
                 dbc.Col(

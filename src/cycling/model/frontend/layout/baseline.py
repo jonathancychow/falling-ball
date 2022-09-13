@@ -5,7 +5,7 @@ import dash_html_components as html
 
 callback_suffix = 'baseline'
 
-rider_form = ball_data_form(callback_suffix)
+ball_form = ball_data_form(callback_suffix)
 generate_baseline = [
     dbc.Row(
         children=[
@@ -48,4 +48,4 @@ header = [
     ),
 ]
 
-baseline_page_layout = header + rider_form + generate_baseline
+baseline_page_layout = header + ball_form + generate_baseline
