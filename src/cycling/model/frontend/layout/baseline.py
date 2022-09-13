@@ -1,11 +1,11 @@
 import dash_core_components as dcc
 import dash_bootstrap_components as dbc
-from cycling.model.frontend.layout.forms import rider_data_form
+from cycling.model.frontend.layout.forms import ball_data_form
 import dash_html_components as html
 
 callback_suffix = 'baseline'
 
-rider_form = rider_data_form(callback_suffix)
+rider_form = ball_data_form(callback_suffix)
 generate_baseline = [
     dbc.Row(
         children=[

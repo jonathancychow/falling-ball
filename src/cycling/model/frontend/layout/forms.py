@@ -3,14 +3,13 @@ from cycling.model.frontend.app import rider_options, bike_options, power_option
 import dash_html_components as html
 
 
-def rider_data_form(callback_suffix):
-    # rider fields
-    rider_select = dbc.Select(
+def ball_data_form(callback_suffix):
+    ball_select = dbc.Select(
         id=f"ball_select_{callback_suffix}",
         options=rider_options,
         value="Sam"
     )
-    rider_data = [
+    ball_data = [
         dbc.FormGroup(
             children=[
                 dbc.Label("Weight (0.5 - 100 kg):"),
@@ -62,7 +61,7 @@ def rider_data_form(callback_suffix):
                 ),
             ]),
     ]
-    rider_data_form = dbc.Form(rider_data)
+    ball_data_form = dbc.Form(ball_data)
 
     # bike fields
     def get_bike_select(suffix, transition=False):
@@ -172,12 +171,12 @@ def rider_data_form(callback_suffix):
                 dbc.Col(
                     children=[
                         dbc.Label("Rider:"),
-                        rider_select
+                        ball_select
                     ],
                     md=3
                 ),
                 dbc.Col(
-                    children=[rider_data_form],
+                    children=[ball_data_form],
                     md=9
                 )
             ],
