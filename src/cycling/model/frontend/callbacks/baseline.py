@@ -122,7 +122,7 @@ def check_validity(*args):
         State(f"ball_select_{callback_suffix}", "value"),
         State(f"ball_weight_{callback_suffix}", "value"),
         State(f"ball_radius_{callback_suffix}", "value"),
-        # State(f"rider_w_prime_{callback_suffix}", "value"),
+        State(f"ball_cd_{callback_suffix}", "value"),
         State(f"bike_select_{callback_suffix}", "value"),
         State(f"bike_weight_{callback_suffix}", "value"),
         State(f"bike_cda_{callback_suffix}", "value"),
@@ -138,7 +138,7 @@ def generate_baseline(
         ball_name,
         ball_weight,
         ball_radius,
-        # rider_w_prime,
+        ball_cd,
         bike_name,
         bike_weight,
         bike_cda,
@@ -151,7 +151,7 @@ def generate_baseline(
 
     # Run simulation
     env = Environment()
-    ball = Ball(name=ball_name, mass=ball_weight, radius=ball_radius, cda=0.1)
+    ball = Ball(name=ball_name, mass=ball_weight, radius=ball_radius, cda=ball_cd)
     bike = Bike(
         name=bike_name,
         mass=bike_weight,
