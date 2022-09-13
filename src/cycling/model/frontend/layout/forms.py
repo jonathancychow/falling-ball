@@ -150,23 +150,23 @@ def ball_data_form(callback_suffix):
         return dbc.Form(planet_data)
 
     # power fields
-    power_select = dbc.Select(
-        id=f"power_select_{callback_suffix}",
-        options=power_options,
-        value="Constant"
-    )
-    power_data = [
-        dbc.FormGroup(
-            children=[
-                dbc.Label("Target power (W):"),
-                dbc.Input(
-                    id=f"power_target_{callback_suffix}",
-                    type="number",
-                    min=0,
-                    max=800,
-                    step=1),
-            ])]
-    power_data_form = dbc.Form(power_data)
+    # power_select = dbc.Select(
+    #     id=f"power_select_{callback_suffix}",
+    #     options=power_options,
+    #     value="Constant"
+    # )
+    # power_data = [
+    #     dbc.FormGroup(
+    #         children=[
+    #             dbc.Label("Target power (W):"),
+    #             dbc.Input(
+    #                 id=f"power_target_{callback_suffix}",
+    #                 type="number",
+    #                 min=0,
+    #                 max=800,
+    #                 step=1),
+    #         ])]
+    # power_data_form = dbc.Form(power_data)
 
     ball_form = [
         # rider
@@ -202,20 +202,20 @@ def ball_data_form(callback_suffix):
             ],
         ),
         # power
-        dbc.Row(
-            children=[
-                dbc.Col(
-                    children=[
-                        dbc.Label("Power profile:"),
-                        power_select
-                    ],
-                    md=3
-                ),
-                dbc.Col(
-                    children=[power_data_form],
-                    md=9
-                )
-            ],
-        ),
+        # dbc.Row(
+        #     children=[
+        #         dbc.Col(
+        #             children=[
+        #                 dbc.Label("Power profile:"),
+        #                 power_select
+        #             ],
+        #             md=3
+        #         ),
+        #         dbc.Col(
+        #             children=[power_data_form],
+        #             md=9
+        #         )
+        #     ],
+        # ),
     ]
     return ball_form

@@ -50,9 +50,9 @@ def toggle_collapse(n, is_open):
         Input(f"ball_select_{callback_suffix}", "value"),
     ],
 )
-def on_ball_select(rider_name):
-    if rider_name in ball_data.keys():
-        return ball_data[rider_name].mass, ball_data[rider_name].radius, ball_data[rider_name].cd
+def on_ball_select(ball_name):
+    if ball_name in ball_data.keys():
+        return ball_data[ball_name].mass, ball_data[ball_name].radius, ball_data[ball_name].cd
     else:
         return None, None, None
 
@@ -79,17 +79,17 @@ def on_planet_select(planet_name):
         return None, None, None, None, None
 
 
-@app.callback(
-    Output(f"power_target_{callback_suffix}", "value"),
-    [
-        Input(f"power_select_{callback_suffix}", "value"),
-    ],
-)
-def on_power_select(power_type):
-    if power_type == "Constant":
-        return 370
-    else:
-        return None
+# @app.callback(
+#     Output(f"power_target_{callback_suffix}", "value"),
+#     [
+#         Input(f"power_select_{callback_suffix}", "value"),
+#     ],
+# )
+# def on_power_select(power_type):
+#     if power_type == "Constant":
+#         return 370
+#     else:
+#         return None
 
 
 @app.callback(
@@ -102,7 +102,7 @@ def on_power_select(power_type):
         Input(f"planet_gravity_{callback_suffix}", "value"),
         Input(f"planet_mass_{callback_suffix}", "value"),
         Input(f"planet_density_{callback_suffix}", "value"),
-        Input(f"power_target_{callback_suffix}", "value")
+        # Input(f"power_target_{callback_suffix}", "value")
     ],
 )
 def check_validity(*args):
@@ -128,9 +128,9 @@ def check_validity(*args):
         State(f"planet_gravity_{callback_suffix}", "value"),
         State(f"planet_mass_{callback_suffix}", "value"),
         State(f"planet_density_{callback_suffix}", "value"),
-        State(f"bike_gradient_climbing_{callback_suffix}", "value"),
+        # State(f"bike_gradient_climbing_{callback_suffix}", "value"),
         State(f"planet_density_{callback_suffix}", "value"),
-        State(f"power_target_{callback_suffix}", "value"),
+        # State(f"power_target_{callback_suffix}", "value"),
         State("experiment_name", "value"),
         State("hidden_data", "value"),
         State("hidden_data_stage", "value")
@@ -146,9 +146,9 @@ def generate_experiment(
         planet_gravity,
         planet_mass,
         planet_radius,
-        bike_gradient_climbing,
+        # bike_gradient_climbing,
         bike_crr,
-        power_target,
+        # power_target,
         experiment_name,
         baseline_data,
         selected_stage):
@@ -161,7 +161,7 @@ def generate_experiment(
         mass=1,
         cda=1,
         cda_climb=1,
-        r_gradient_switch=bike_gradient_climbing /
+        r_gradient_switch=1 /
         100,
         crr=bike_crr)
 
@@ -185,7 +185,7 @@ def generate_experiment(
         s=distance, power=power, v0=0.1, t0=0)
 
     seconds = np.arange(0, int(time[-1] + 1))
-    power_per_second = power_target * np.ones(len(seconds))
+    # power_per_second = power_target * np.ones(len(seconds))
     # cpm = CriticalPowerModel(cp=rider_cp, w_prime=rider_w_prime)
     # w_prime_balance_per_second = cpm.w_prime_balance(power=power_per_second)
     # w_prime_balance = interpolate(seconds, w_prime_balance_per_second, time)
@@ -199,8 +199,8 @@ def generate_experiment(
     experiment_data['elevation'] = distance.tolist()
 
     # experiment_data['w_prime_balance'] = w_prime_balance
-    experiment_data['rider_name'] = ball_name
-    experiment_data['bike_name'] = planet_name
+    experiment_data['ball_name'] = ball_name
+    experiment_data['planet_name'] = planet_name
     experiment_data['experiment_name'] = experiment_name
     print("Done with sim")
 
@@ -216,7 +216,7 @@ def generate_experiment(
 def update_table(baseline_data, experiment_data, data):
     baseline_data = pd.DataFrame(baseline_data)
     baseline_data = baseline_data[[
-        'experiment_name', 'rider_name', 'bike_name', 'time', 
+        'experiment_name', 'ball_name', 'planet_name', 'time', 
         # 'w_prime_balance'
         ]]
 
@@ -226,7 +226,7 @@ def update_table(baseline_data, experiment_data, data):
     if experiment_data is not None:
         experiment_data = pd.DataFrame(experiment_data)
         experiment_data = experiment_data[[
-            'experiment_name', 'rider_name', 'bike_name', 'time', 
+            'experiment_name', 'ball_name', 'planet_name', 'time', 
             # 'w_prime_balance'
             ]]
         experiment_data = experiment_data.tail(1)

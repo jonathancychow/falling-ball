@@ -47,9 +47,9 @@ def toggle_collapse(n, is_open):
         Input(f"ball_select_{callback_suffix}", "value"),
     ],
 )
-def on_ball_select(rider_name):
-    if rider_name in ball_data.keys():
-        return ball_data[rider_name].mass, ball_data[rider_name].radius, ball_data[rider_name].cd
+def on_ball_select(ball_name):
+    if ball_name in ball_data.keys():
+        return ball_data[ball_name].mass, ball_data[ball_name].radius, ball_data[ball_name].cd
     else:
         return None, None
 
@@ -74,17 +74,17 @@ def on_planet_select(planet_name):
         return None, None, None, None, None
 
 
-@app.callback(
-    Output(f"power_target_{callback_suffix}", "value"),
-    [
-        Input(f"power_select_{callback_suffix}", "value"),
-    ],
-)
-def on_power_select(power_type):
-    if power_type == "Constant":
-        return 370
-    else:
-        return None
+# @app.callback(
+#     Output(f"power_target_{callback_suffix}", "value"),
+#     [
+#         Input(f"power_select_{callback_suffix}", "value"),
+#     ],
+# )
+# def on_power_select(power_type):
+#     if power_type == "Constant":
+#         return 370
+#     else:
+#         return None
 
 
 @app.callback(
@@ -97,7 +97,7 @@ def on_power_select(power_type):
         Input(f"planet_gravity_{callback_suffix}", "value"),
         Input(f"planet_mass_{callback_suffix}", "value"),
         Input(f"planet_density_{callback_suffix}", "value"),
-        Input(f"power_target_{callback_suffix}", "value")
+        # Input(f"power_target_{callback_suffix}", "value")
     ],
 )
 def check_validity(*args):
@@ -127,9 +127,9 @@ def check_validity(*args):
         State(f"planet_gravity_{callback_suffix}", "value"),
         State(f"planet_mass_{callback_suffix}", "value"),
         State(f"planet_raidus_{callback_suffix}", "value"),
-        State(f"bike_gradient_climbing_{callback_suffix}", "value"),
+        # State(f"bike_gradient_climbing_{callback_suffix}", "value"),
         State(f"planet_density_{callback_suffix}", "value"),
-        State(f"power_target_{callback_suffix}", "value"),
+        # State(f"power_target_{callback_suffix}", "value"),
         State("hidden_data_stage", "value"),
     ]
 )
@@ -143,9 +143,9 @@ def generate_baseline(
         planet_gravity,
         planet_mass,
         planet_radius,
-        bike_gradient_climbing,
+        # bike_gradient_climbing,
         planet_air_density,
-        bike_crr,
+        # bike_crr,
         selected_stage
         ):
 
@@ -160,9 +160,9 @@ def generate_baseline(
         mass=planet_gravity,
         cda=planet_mass,
         cda_climb=planet_mass,
-        r_gradient_switch=bike_gradient_climbing /
+        r_gradient_switch=1 /
         100,
-        crr=bike_crr)
+        crr=1)
 
     # stage = Stage(name='Stage', file_name=f'{selected_stage}.csv', s_step=50)
     stage = None
@@ -201,8 +201,8 @@ def generate_baseline(
     # baseline_data['elevation'] = stage.elevation.tolist()
     baseline_data['elevation'] = distance.tolist()
     # baseline_data['w_prime_balance'] = w_prime_balance
-    baseline_data['rider_name'] = ball_name
-    baseline_data['bike_name'] = planet_name
+    baseline_data['ball_name'] = ball_name
+    baseline_data['planet_name'] = planet_name
     baseline_data['experiment_name'] = "baseline"
 
     figure = simulation_results_plot(baseline_data)
