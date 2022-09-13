@@ -9,7 +9,7 @@ def main():
 
 def production():
     rt = subprocess.call(
-        ["gunicorn", "cycling.model.frontend.index:app.server", "--bind", "0.0.0.0:8050"])
+        ["gunicorn", "ball.model.frontend.index:app.server", "--bind", "0.0.0.0:8050"])
     if rt != 0:
         print(f'Gunicorn server exited with non-zero exit code {rt}')
     sys.exit(rt)
