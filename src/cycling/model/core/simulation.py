@@ -1,4 +1,5 @@
 import logging
+import math
 
 import numpy as np
 from scipy.integrate import solve_ivp
@@ -57,12 +58,11 @@ class Simulation:
         rho = 1
         r = 0.05
 
-        print(f"Air density : {self._environment.air_density}")
+        # print(f"Air density : {self._environment.air_density}")
 
-        f_weight = self._ball.mass * g 
-        import math
-        f_drag = (self._ball.cda * rho * math.pi * (self._ball.radius**2) * (v **2))
-        # f_drag = (self._ball.cda * self._environment.air_density * math.pi * (self._ball.radius**2) * (v **2))
+        f_weight = self._ball.mass * self._environment.gravity
+        # f_drag = (self._ball.cda * rho * math.pi * (self._ball.radius**2) * (v **2))
+        f_drag = (self._ball.cda * self._environment.air_density * math.pi * (self._ball.radius**2) * (v **2))
         g_vert = 1 / self._ball.mass * ( f_weight - f_drag )  
 
         # dvds = g_long / v
