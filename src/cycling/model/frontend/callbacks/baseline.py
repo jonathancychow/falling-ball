@@ -167,7 +167,7 @@ def generate_baseline(
     # stage = Stage(name='Stage', file_name=f'{selected_stage}.csv', s_step=50)
     stage = None
 
-    distance = np.arange(0, 5000, 5)
+    distance = np.arange(0, 100, 1)
     simulation = Simulation(
         ball=ball,
         bike_1=bike,
@@ -176,7 +176,7 @@ def generate_baseline(
 
     # power = power_target * np.ones(len(stage.distance))
     power = 0 * np.ones(len(distance))
-    print(f"{distance[0]} : {distance[-1]}")
+    # print(f"{distance[0]} : {distance[-1]}")
 
     # velocity, time, _, _ = simulation.solve_velocity_and_time(
     #     s=stage.distance, power=power, v0=0.1, t0=0)
@@ -187,7 +187,7 @@ def generate_baseline(
         t0=0
         )
 
-    seconds = np.arange(0, int(time[-1] + 1))
+    # seconds = np.arange(0, int(time[-1] + 1))
     # power_per_second = power_target * np.ones(len(seconds))
     # cpm = CriticalPowerModel(cp=rider_cp, w_prime=rider_w_prime)
     # w_prime_balance_per_second = cpm.w_prime_balance(power=power_per_second)
@@ -199,7 +199,7 @@ def generate_baseline(
     baseline_data['distance'] = distance.tolist()
     baseline_data['velocity'] = velocity.tolist()
     # baseline_data['elevation'] = stage.elevation.tolist()
-    baseline_data['elevation'] = distance.tolist()
+    # baseline_data['elevation'] = distance.tolist()
     # baseline_data['w_prime_balance'] = w_prime_balance
     baseline_data['ball_name'] = ball_name
     baseline_data['planet_name'] = planet_name

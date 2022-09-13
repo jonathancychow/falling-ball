@@ -168,7 +168,7 @@ def generate_experiment(
     # stage = Stage(name='Stage', file_name=f'{selected_stage}.csv', s_step=50)
     stage = None
 
-    distance = np.arange(0, 5000, 5)
+    distance = np.arange(0, 100, 1)
     simulation = Simulation(
         ball=ball,
         bike_1=bike,
@@ -196,7 +196,7 @@ def generate_experiment(
 
     experiment_data['velocity'] = velocity.tolist()
     # experiment_data['elevation'] = stage.elevation.tolist()
-    experiment_data['elevation'] = distance.tolist()
+    # experiment_data['elevation'] = distance.tolist()
 
     # experiment_data['w_prime_balance'] = w_prime_balance
     experiment_data['ball_name'] = ball_name

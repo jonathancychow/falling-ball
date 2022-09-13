@@ -84,7 +84,7 @@ def stage_elevation_plot(selected_stage):
         hovermode="closest",
         template=template,
         margin=dict(l=20, r=20, t=20, b=20),  # noqa
-        yaxis_title="elevation (m)",
+        yaxis_title="velocity (m/s)",
         xaxis_title="distance (m)",
         height=700 * 0.3,
     )

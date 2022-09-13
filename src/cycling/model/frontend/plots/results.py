@@ -42,8 +42,8 @@ def simulation_results_plot(baseline_data, experiment_data=None):
         # max_w_prime = max(max_w_prime, max(experiment_data['w_prime_balance']))
         # min_w_prime = min(min_w_prime, min(experiment_data['w_prime_balance']))
 
-    figure.update_yaxes(title_text="elevation (m)", row=1, col=1)
-    # figure.update_xaxes(title_text="distance (m)", row=3, col=1)
+    figure.update_yaxes(title_text="velocity (m/s)", row=1, col=1)
+    figure.update_xaxes(title_text="distance (m)", row=1, col=1)
     # figure.update_yaxes(title_text="velocity (m/s)", row=2, col=1)
     # figure.update_yaxes(title_text="W' balance (J)", range=[min(0, min_w_prime) - 1000, max_w_prime + 1000], row=3,
     #                     col=1)
