@@ -68,9 +68,9 @@ def ball_data_form(callback_suffix):
         if transition:
             suffix = suffix + '_transition'
         bike_select = dbc.Select(
-            id=f"bike_select_{suffix}",
+            id=f"planet_select_{suffix}",
             options=bike_options,
-            value="Light Bike"
+            value="Earth"
         )
         return bike_select
 
@@ -81,13 +81,14 @@ def ball_data_form(callback_suffix):
         bike_data = [
             dbc.FormGroup(
                 children=[
-                    dbc.Label("Weight (5 - 20 kg):"),
+                    dbc.Label("Gravity (m/s/s)):"),
                     dbc.Input(
-                        id=f"bike_weight_{suffix}",
+                        # id=f"bike_weight_{suffix}",
+                        id=f"planet_gravity_{suffix}",
                         type="number",
                         min=5,
                         max=20,
-                        step=0.01),
+                        step=0.1),
                 ]),
             dbc.FormGroup(
                 children=[
@@ -101,31 +102,34 @@ def ball_data_form(callback_suffix):
                         dbc.Card(
                             dbc.FormGroup(
                                 children=[
-                                    dbc.Label("Rolling resistance (-):"),
+                                    dbc.Label("Air Density (kg/m3):"),
                                     dbc.Input(
-                                        id=f"bike_crr_{suffix}",
+                                        # id=f"bike_crr_{suffix}",
+                                        id=f"planet_density_{suffix}",
                                         type="number",
                                         min=0,
-                                        max=0.1,
-                                        step=0.0001),
-                                    html.Div([
-                                        html.A('Learn more',
-                                                href='https://ridefar.info/bike/cycling-speed/rolling-resistance/',
-                                                target='_blank')]),
-                                    dbc.Label("Aerodynamics drag - CdA:"),
+                                        max=10,
+                                        step=0.1),
+                                    # html.Div([
+                                    #     html.A('Learn more',
+                                    #             href='https://ridefar.info/bike/cycling-speed/rolling-resistance/',
+                                    #             target='_blank')]),
+                                    dbc.Label("Planet Mass (m):"),
                                     dbc.Input(
-                                        id=f"bike_cda_{suffix}",
+                                        # id=f"bike_cda_{suffix}",
+                                        id=f"planet_mass_{suffix}",
                                         type="number",
                                         min=0,
                                         max=1,
                                         step=0.01),
-                                    html.Div([
-                                        html.A('Learn more',
-                                                href='https://notio.ai/blogs/blog/what-is-cda-and-why-is-it-important-as-a-cyclist-to-measure-it',
-                                                target='_blank')]),
-                                    dbc.Label("Aerodynamics drag at climbing position - CdA:"),
+                                    # html.Div([
+                                    #     html.A('Learn more',
+                                    #             href='https://notio.ai/blogs/blog/what-is-cda-and-why-is-it-important-as-a-cyclist-to-measure-it',
+                                    #             target='_blank')]),
+                                    dbc.Label("Planet Radius (m)"),
                                     dbc.Input(
-                                        id=f"bike_cda_climbing_{suffix}",
+                                        id=f"planet_raidus_{suffix}",
+                                        # id=f"bike_cda_climbing_{suffix}",
                                         type="number",
                                         min=0,
                                         max=1,

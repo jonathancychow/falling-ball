@@ -36,7 +36,7 @@ BikeData = namedtuple('BikeData',
                        'track_mu',
                        'eff_drive'])  # schema
 bike_data = {
-    "Light Bike": BikeData(
+    "Earth": BikeData(
         mass=6.47,
         cda=0.3,
         cda_climbing=0.3,
@@ -44,7 +44,7 @@ bike_data = {
         crr=0.003,
         track_mu=0.0025,
         eff_drive=0.974),
-    "Slim bike": BikeData(
+    "Mars": BikeData(
         mass=8.20,
         cda=0.22,
         cda_climbing=0.3,

@@ -56,17 +56,17 @@ def on_ball_select(rider_name):
 
 @app.callback(
     [
-        Output(f"bike_weight_{callback_suffix}", "value"),
-        Output(f"bike_cda_{callback_suffix}", "value"),
-        Output(f"bike_cda_climbing_{callback_suffix}", "value"),
+        Output(f"planet_gravity_{callback_suffix}", "value"),
+        Output(f"planet_mass_{callback_suffix}", "value"),
+        Output(f"planet_raidus_{callback_suffix}", "value"),
         Output(f"bike_gradient_climbing_{callback_suffix}", "value"),
-        Output(f"bike_crr_{callback_suffix}", "value")
+        Output(f"planet_density_{callback_suffix}", "value")
     ],
     [
-        Input(f"bike_select_{callback_suffix}", "value"),
+        Input(f"planet_select_{callback_suffix}", "value"),
     ],
 )
-def on_bike_select(bike_name):
+def on_planet_select(bike_name):
     if bike_name in bike_data.keys():
         return bike_data[bike_name].mass, bike_data[bike_name].cda, bike_data[
             bike_name].cda_climbing, bike_data[bike_name].gradient_climbing, bike_data[bike_name].crr
@@ -94,9 +94,9 @@ def on_power_select(power_type):
     ],
     [
         Input(f"ball_weight_{callback_suffix}", "value"),
-        Input(f"bike_weight_{callback_suffix}", "value"),
-        Input(f"bike_cda_{callback_suffix}", "value"),
-        Input(f"bike_crr_{callback_suffix}", "value"),
+        Input(f"planet_gravity_{callback_suffix}", "value"),
+        Input(f"planet_mass_{callback_suffix}", "value"),
+        Input(f"planet_density_{callback_suffix}", "value"),
         Input(f"power_target_{callback_suffix}", "value")
     ],
 )
@@ -123,12 +123,12 @@ def check_validity(*args):
         State(f"ball_weight_{callback_suffix}", "value"),
         State(f"ball_radius_{callback_suffix}", "value"),
         State(f"ball_cd_{callback_suffix}", "value"),
-        State(f"bike_select_{callback_suffix}", "value"),
-        State(f"bike_weight_{callback_suffix}", "value"),
-        State(f"bike_cda_{callback_suffix}", "value"),
-        State(f"bike_cda_climbing_{callback_suffix}", "value"),
+        State(f"planet_select_{callback_suffix}", "value"),
+        State(f"planet_gravity_{callback_suffix}", "value"),
+        State(f"planet_mass_{callback_suffix}", "value"),
+        State(f"planet_raidus_{callback_suffix}", "value"),
         State(f"bike_gradient_climbing_{callback_suffix}", "value"),
-        State(f"bike_crr_{callback_suffix}", "value"),
+        State(f"planet_density_{callback_suffix}", "value"),
         State(f"power_target_{callback_suffix}", "value"),
         State("hidden_data_stage", "value"),
     ]

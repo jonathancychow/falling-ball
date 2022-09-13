@@ -60,7 +60,7 @@ class Simulation:
         f_weight = self._ball.mass * g 
         import math
         f_drag = (self._ball.cda * rho * math.pi * (self._ball.radius**2) * (v **2))
-        g_vert = 1 / m * ( f_weight - f_drag )  
+        g_vert = 1 / self._ball.mass * ( f_weight - f_drag )  
 
         # dvds = g_long / v
         dvds = g_vert / v
