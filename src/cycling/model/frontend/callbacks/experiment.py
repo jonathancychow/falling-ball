@@ -44,7 +44,7 @@ def toggle_collapse(n, is_open):
     [
         Output(f"ball_weight_{callback_suffix}", "value"),
         Output(f"ball_radius_{callback_suffix}", "value"),
-        # Output(f"rider_w_prime_{callback_suffix}", "value")
+        Output(f"ball_cd_{callback_suffix}", "value")
     ],
     [
         Input(f"ball_select_{callback_suffix}", "value"),
@@ -52,7 +52,7 @@ def toggle_collapse(n, is_open):
 )
 def on_ball_select(rider_name):
     if rider_name in ball_data.keys():
-        return ball_data[rider_name].mass, ball_data[rider_name].cp
+        return ball_data[rider_name].mass, ball_data[rider_name].radius, ball_data[rider_name].cda
     else:
         return None, None, None
 
@@ -136,9 +136,9 @@ def check_validity(*args):
 )
 def generate_experiment(
         n_clicks_time,
-        rider_name,
-        rider_weight,
-        rider_cp,
+        ball_name,
+        ball_weight,
+        ball_radius,
         # rider_w_prime,
         bike_name,
         bike_weight,
@@ -153,7 +153,7 @@ def generate_experiment(
 
     # Run simulation
     env = Environment()
-    rider = Ball(name=rider_name, mass=rider_weight, cda=0)
+    ball = Ball(name=ball_name, mass=ball_weight, radius=ball_radius, cda=0.1)
     bike = Bike(
         name=bike_name,
         mass=bike_weight,
@@ -168,7 +168,7 @@ def generate_experiment(
 
     distance = np.arange(0, 5000, 5)
     simulation = Simulation(
-        rider=rider,
+        ball=ball,
         bike_1=bike,
         stage=stage,
         environment=env)
@@ -197,7 +197,7 @@ def generate_experiment(
     experiment_data['elevation'] = distance.tolist()
 
     # experiment_data['w_prime_balance'] = w_prime_balance
-    experiment_data['rider_name'] = rider_name
+    experiment_data['rider_name'] = ball_name
     experiment_data['bike_name'] = bike_name
     experiment_data['experiment_name'] = experiment_name
     print("Done with sim")

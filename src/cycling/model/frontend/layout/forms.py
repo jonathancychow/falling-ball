@@ -45,13 +45,13 @@ def rider_data_form(callback_suffix):
                                 #     html.A('Learn more',
                                 #            href='https://sporttracks.mobi/blog/critical-power-training',
                                 #            target='_blank')]),
-                                # dbc.Label("Anaerobic work capacity - W' (J):"),
-                                # dbc.Input(
-                                #     id=f"rider_w_prime_{callback_suffix}",
-                                #     type="number",
-                                #     min=10000,
-                                #     max=30000,
-                                #     step=10),
+                                dbc.Label("Ball cd (-):"),
+                                dbc.Input(
+                                    id=f"ball_cd_{callback_suffix}",
+                                    type="number",
+                                    min=0.01,
+                                    max=0.9,
+                                    step=0.01),
                                 # html.Div([
                                 #     html.A('Learn more',
                                 #            href="https://pezcyclingnews.com/toolbox/the-anaerobic-w/",

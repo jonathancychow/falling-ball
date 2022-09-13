@@ -13,14 +13,18 @@ else:
 # Mock rider database
 BallData = namedtuple(
     'RiderData', [
-        'mass', 'cda', 'cp', 'w_prime', 'seat_to_ground'])  # schema
+        'mass', 'radius', 'cda', 'cp', 
+        # 'w_prime', 'seat_to_ground'
+        ])  # schema
 ball_data = {
     "Sam": BallData(
-        mass=5,
-        cda=None,
-        cp=360,
-        w_prime=19800,
-        seat_to_ground=1.03)}
+        mass = 5,
+        radius = 0.2,
+        cda = 0.2,
+        cp = 360
+        # w_prime = 19800,
+        # seat_to_ground = 1.03
+        )}
 
 # Mock bike database
 BikeData = namedtuple('BikeData',

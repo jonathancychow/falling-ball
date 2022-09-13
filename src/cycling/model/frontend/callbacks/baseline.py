@@ -41,7 +41,7 @@ def toggle_collapse(n, is_open):
     [
         Output(f"ball_weight_{callback_suffix}", "value"),
         Output(f"ball_radius_{callback_suffix}", "value"),
-        # Output(f"rider_w_prime_{callback_suffix}", "value")
+        Output(f"ball_cd_{callback_suffix}", "value")
     ],
     [
         Input(f"ball_select_{callback_suffix}", "value"),
@@ -49,7 +49,7 @@ def toggle_collapse(n, is_open):
 )
 def on_ball_select(rider_name):
     if rider_name in ball_data.keys():
-        return ball_data[rider_name].mass, ball_data[rider_name].cp
+        return ball_data[rider_name].mass, ball_data[rider_name].radius, ball_data[rider_name].cda
     else:
         return None, None
 
