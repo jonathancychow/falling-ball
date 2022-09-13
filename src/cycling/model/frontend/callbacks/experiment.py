@@ -52,7 +52,7 @@ def toggle_collapse(n, is_open):
 )
 def on_ball_select(rider_name):
     if rider_name in ball_data.keys():
-        return ball_data[rider_name].mass, ball_data[rider_name].radius, ball_data[rider_name].cda
+        return ball_data[rider_name].mass, ball_data[rider_name].radius, ball_data[rider_name].cd
     else:
         return None, None, None
 

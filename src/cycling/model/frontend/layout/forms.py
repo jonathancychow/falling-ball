@@ -7,7 +7,7 @@ def ball_data_form(callback_suffix):
     ball_select = dbc.Select(
         id=f"ball_select_{callback_suffix}",
         options=ball_options,
-        value="Sam"
+        value="Tennis Ball"
     )
     ball_data = [
         dbc.FormGroup(
@@ -16,9 +16,9 @@ def ball_data_form(callback_suffix):
                 dbc.Input(
                     id=f"ball_weight_{callback_suffix}",
                     type="number",
-                    min=0.5,
+                    min=0.01,
                     max=100,
-                    step=0.5),
+                    step=0.01),
             ]),
         dbc.FormGroup(
             children=[
@@ -39,7 +39,7 @@ def ball_data_form(callback_suffix):
                                     type="number",
                                     min=0.01,
                                     max=10,
-                                    step=0.01),
+                                    step=0.005),
                                 # html.Div([
                                 #     html.A('Learn more',
                                 #            href='https://sporttracks.mobi/blog/critical-power-training',
