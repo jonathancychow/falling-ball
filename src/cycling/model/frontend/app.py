@@ -61,7 +61,7 @@ ball_options = sorted([{"label": key, "value": key}
                         for key in ball_data.keys()], key=lambda x: x['value'])
 planet_options = sorted([{"label": key, "value": key}
                        for key in planet_data.keys()], key=lambda x: x['value'])
-power_options = [{"label": "Constant", "value": "Constant"}]
+sim_options = [{"label": "-", "value": "-"}]
 
 app = dash.Dash(__name__, external_stylesheets=[bootswatch_theme])
 

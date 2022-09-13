@@ -79,17 +79,17 @@ def on_planet_select(planet_name):
         return None, None, None, None, None
 
 
-# @app.callback(
-#     Output(f"power_target_{callback_suffix}", "value"),
-#     [
-#         Input(f"power_select_{callback_suffix}", "value"),
-#     ],
-# )
-# def on_power_select(power_type):
-#     if power_type == "Constant":
-#         return 370
-#     else:
-#         return None
+@app.callback(
+    Output(f"v0_{callback_suffix}", "value"),
+    [
+        Input(f"sim_select_{callback_suffix}", "value"),
+    ],
+)
+def on_power_select(power_type):
+    if power_type == "-":
+        return 0.01
+    else:
+        return None
 
 
 @app.callback(
@@ -102,7 +102,7 @@ def on_planet_select(planet_name):
         Input(f"planet_gravity_{callback_suffix}", "value"),
         Input(f"planet_mass_{callback_suffix}", "value"),
         Input(f"planet_density_{callback_suffix}", "value"),
-        # Input(f"power_target_{callback_suffix}", "value")
+        Input(f"v0_{callback_suffix}", "value")
     ],
 )
 def check_validity(*args):
@@ -129,8 +129,8 @@ def check_validity(*args):
         State(f"planet_mass_{callback_suffix}", "value"),
         State(f"planet_density_{callback_suffix}", "value"),
         # State(f"bike_gradient_climbing_{callback_suffix}", "value"),
-        State(f"planet_density_{callback_suffix}", "value"),
-        # State(f"power_target_{callback_suffix}", "value"),
+        State(f"planet_raidus_{callback_suffix}", "value"),
+        State(f"v0_{callback_suffix}", "value"),
         State("experiment_name", "value"),
         State("hidden_data", "value"),
         State("hidden_data_stage", "value")
@@ -145,9 +145,10 @@ def generate_experiment(
         planet_name,
         planet_gravity,
         planet_mass,
+        planet_density,
         planet_radius,
         # bike_gradient_climbing,
-        bike_crr,
+        initial_velocity,
         # power_target,
         experiment_name,
         baseline_data,
@@ -163,7 +164,7 @@ def generate_experiment(
         cda_climb=1,
         r_gradient_switch=1 /
         100,
-        crr=bike_crr)
+        crr=0)
 
     # stage = Stage(name='Stage', file_name=f'{selected_stage}.csv', s_step=50)
     stage = None
@@ -182,7 +183,7 @@ def generate_experiment(
     #     s=stage.distance, power=power, v0=0.1, t0=0)
 
     velocity, time, _, _ = simulation.solve_velocity_and_time(
-        s=distance, power=power, v0=0.1, t0=0)
+        s=distance, power=power, v0=initial_velocity, t0=0)
 
     seconds = np.arange(0, int(time[-1] + 1))
     # power_per_second = power_target * np.ones(len(seconds))

@@ -1,5 +1,5 @@
 import dash_bootstrap_components as dbc
-from cycling.model.frontend.app import ball_options, planet_options, power_options
+from cycling.model.frontend.app import ball_options, planet_options, sim_options
 import dash_html_components as html
 
 
@@ -150,23 +150,23 @@ def ball_data_form(callback_suffix):
         return dbc.Form(planet_data)
 
     # power fields
-    # power_select = dbc.Select(
-    #     id=f"power_select_{callback_suffix}",
-    #     options=power_options,
-    #     value="Constant"
-    # )
-    # power_data = [
-    #     dbc.FormGroup(
-    #         children=[
-    #             dbc.Label("Target power (W):"),
-    #             dbc.Input(
-    #                 id=f"power_target_{callback_suffix}",
-    #                 type="number",
-    #                 min=0,
-    #                 max=800,
-    #                 step=1),
-    #         ])]
-    # power_data_form = dbc.Form(power_data)
+    sim_select = dbc.Select(
+        id=f"sim_select_{callback_suffix}",
+        options=sim_options,
+        value="-"
+    )
+    sim_data = [
+        dbc.FormGroup(
+            children=[
+                dbc.Label("Initial Velocity (m/s):"),
+                dbc.Input(
+                    id=f"v0_{callback_suffix}",
+                    type="number",
+                    min=0,
+                    max=800,
+                    step=1),
+            ])]
+    sim_data_form = dbc.Form(sim_data)
 
     ball_form = [
         # rider
@@ -201,21 +201,21 @@ def ball_data_form(callback_suffix):
                 )
             ],
         ),
-        # power
-        # dbc.Row(
-        #     children=[
-        #         dbc.Col(
-        #             children=[
-        #                 dbc.Label("Power profile:"),
-        #                 power_select
-        #             ],
-        #             md=3
-        #         ),
-        #         dbc.Col(
-        #             children=[power_data_form],
-        #             md=9
-        #         )
-        #     ],
-        # ),
+        # sim
+        dbc.Row(
+            children=[
+                dbc.Col(
+                    children=[
+                        dbc.Label("Sim:"),
+                        sim_select
+                    ],
+                    md=3
+                ),
+                dbc.Col(
+                    children=[sim_data_form],
+                    md=9
+                )
+            ],
+        ),
     ]
     return ball_form

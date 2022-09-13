@@ -74,17 +74,17 @@ def on_planet_select(planet_name):
         return None, None, None, None, None
 
 
-# @app.callback(
-#     Output(f"power_target_{callback_suffix}", "value"),
-#     [
-#         Input(f"power_select_{callback_suffix}", "value"),
-#     ],
-# )
-# def on_power_select(power_type):
-#     if power_type == "Constant":
-#         return 370
-#     else:
-#         return None
+@app.callback(
+    Output(f"v0_{callback_suffix}", "value"),
+    [
+        Input(f"sim_select_{callback_suffix}", "value"),
+    ],
+)
+def on_power_select(power_type):
+    if power_type == "-":
+        return 0.01
+    else:
+        return None
 
 
 @app.callback(
@@ -97,7 +97,7 @@ def on_planet_select(planet_name):
         Input(f"planet_gravity_{callback_suffix}", "value"),
         Input(f"planet_mass_{callback_suffix}", "value"),
         Input(f"planet_density_{callback_suffix}", "value"),
-        # Input(f"power_target_{callback_suffix}", "value")
+        Input(f"v0_{callback_suffix}", "value")
     ],
 )
 def check_validity(*args):
@@ -129,7 +129,7 @@ def check_validity(*args):
         State(f"planet_raidus_{callback_suffix}", "value"),
         # State(f"bike_gradient_climbing_{callback_suffix}", "value"),
         State(f"planet_density_{callback_suffix}", "value"),
-        # State(f"power_target_{callback_suffix}", "value"),
+        State(f"v0_{callback_suffix}", "value"),
         State("hidden_data_stage", "value"),
     ]
 )
@@ -145,7 +145,7 @@ def generate_baseline(
         planet_radius,
         # bike_gradient_climbing,
         planet_air_density,
-        # bike_crr,
+        initial_velocity,
         selected_stage
         ):
 
@@ -183,7 +183,7 @@ def generate_baseline(
     velocity, time, _, _ = simulation.solve_velocity_and_time(
         s=distance, 
         power=power, 
-        v0=0.1, 
+        v0=initial_velocity, 
         t0=0
         )
 
