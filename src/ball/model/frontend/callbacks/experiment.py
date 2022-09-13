@@ -3,17 +3,17 @@ import pandas as pd
 import dash_table
 from dash_table.Format import Format, Scheme, Symbol
 from dash.dependencies import Input, Output, State
-from cycling.model.frontend.app import app
-from cycling.model.frontend.plots.results import simulation_results_plot
+from ball.model.frontend.app import app
+from ball.model.frontend.plots.results import simulation_results_plot
 import numpy as np
-from cycling.model.core.bike import Bike
-from cycling.model.core.environment import Environment
-from cycling.model.core.ball import Ball
+from ball.model.core.bike import Bike
+from ball.model.core.environment import Environment
+from ball.model.core.ball import Ball
 # from cycling.model.core.stage import Stage
-from cycling.model.core.simulation import Simulation
+from ball.model.core.simulation import Simulation
 # from cycling.model.core.critical_power import CriticalPowerModel
-from cycling.model.etl.utils import interpolate
-from cycling.model.frontend.app import ball_data, planet_data
+from ball.model.etl.utils import interpolate
+from ball.model.frontend.app import ball_data, planet_data
 
 callback_suffix = 'experiment'
 

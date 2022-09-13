@@ -1,6 +1,6 @@
 import sys
 import subprocess
-from cycling.model.frontend.index import app
+from ball.model.frontend.index import app
 
 
 def main():

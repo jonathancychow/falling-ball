@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-"""Unit test package for cycling.model."""
+"""Unit test package for ball.model."""
 try:
     import pkg_resources as _pkg_resources
     _pkg_resources.declare_namespace(__name__)

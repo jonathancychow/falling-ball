@@ -1,6 +1,6 @@
 import plotly.graph_objects as go
 from cycling.model.core.stage import Stage
-from cycling.model.frontend.app import THEME
+from ball.model.frontend.app import THEME
 
 if THEME == 'Dark':
     mapbox_style = "carto-darkmatter"

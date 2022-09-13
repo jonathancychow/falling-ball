@@ -1,6 +1,6 @@
 import pytest
 
-from cycling.model.core.environment import Environment, compute_air_density
+from ball.model.core.environment import Environment, compute_air_density
 
 
 @pytest.fixture

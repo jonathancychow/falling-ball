@@ -1,6 +1,6 @@
 import dash_core_components as dcc
 import dash_bootstrap_components as dbc
-from cycling.model.frontend.layout.forms import ball_data_form
+from ball.model.frontend.layout.forms import ball_data_form
 import dash_html_components as html
 
 table = None

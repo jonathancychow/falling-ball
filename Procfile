@@ -1,1 +1,1 @@
-web: gunicorn --pythonpath src src.cycling.model.frontend.index:server
+web: gunicorn --pythonpath src src.ball.model.frontend.index:server

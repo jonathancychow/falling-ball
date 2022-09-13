@@ -1,6 +1,6 @@
 from dash.dependencies import Input, Output
-from cycling.model.frontend.app import app
-from cycling.model.frontend.plots.stage import stage_profile_plot, stage_elevation_plot
+from ball.model.frontend.app import app
+from ball.model.frontend.plots.stage import stage_profile_plot, stage_elevation_plot
 
 
 @app.callback(

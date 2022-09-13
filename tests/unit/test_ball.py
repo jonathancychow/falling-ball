@@ -1,6 +1,6 @@
 import pytest
 
-from cycling.model.core.ball import Ball
+from ball.model.core.ball import Ball
 
 
 @pytest.fixture

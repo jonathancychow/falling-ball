@@ -1,5 +1,5 @@
 from dash.dependencies import Input, Output
-from cycling.model.frontend.app import app
+from ball.model.frontend.app import app
 
 
 @app.callback(

@@ -1,5 +1,5 @@
 import dash_bootstrap_components as dbc
-from cycling.model.frontend.app import ball_options, planet_options, sim_options
+from ball.model.frontend.app import ball_options, planet_options, sim_options
 import dash_html_components as html
 
 

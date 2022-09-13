@@ -1,9 +1,9 @@
 import pytest
 import numpy as np
 
-from cycling.model.core.ball import Ball
-from cycling.model.core.environment import Environment
-from cycling.model.core.simulation import Simulation
+from ball.model.core.ball import Ball
+from ball.model.core.environment import Environment
+from ball.model.core.simulation import Simulation
 
 
 @pytest.fixture

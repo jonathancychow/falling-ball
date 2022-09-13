@@ -4,7 +4,7 @@ import math
 import numpy as np
 from scipy.integrate import solve_ivp
 
-from cycling.model.etl.utils import interpolate
+from ball.model.etl.utils import interpolate
 
 logger = logging.getLogger()
 
