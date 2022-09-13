@@ -7,7 +7,7 @@ table = None
 
 callback_suffix = 'experiment'
 
-rider_form = ball_data_form(callback_suffix)
+ball_form = ball_data_form(callback_suffix)
 
 experiment_naming = [
     dbc.FormGroup(
@@ -65,4 +65,4 @@ header = [
     ),
 ]
 
-experiment_page_layout = header + experiment_naming + rider_form + generate_experiment
+experiment_page_layout = header + experiment_naming + ball_form + generate_experiment

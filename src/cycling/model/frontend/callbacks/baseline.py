@@ -10,7 +10,7 @@ from cycling.model.core.stage import Stage
 from cycling.model.core.simulation import Simulation
 from cycling.model.core.critical_power import CriticalPowerModel
 from cycling.model.etl.utils import interpolate
-from cycling.model.frontend.app import ball_data, bike_data
+from cycling.model.frontend.app import ball_data, planet_data
 
 callback_suffix = 'baseline'
 
@@ -67,9 +67,9 @@ def on_ball_select(rider_name):
     ],
 )
 def on_planet_select(bike_name):
-    if bike_name in bike_data.keys():
-        return bike_data[bike_name].mass, bike_data[bike_name].cda, bike_data[
-            bike_name].cda_climbing, bike_data[bike_name].gradient_climbing, bike_data[bike_name].crr
+    if bike_name in planet_data.keys():
+        return planet_data[bike_name].mass, planet_data[bike_name].cda, planet_data[
+            bike_name].cda_climbing, planet_data[bike_name].gradient_climbing, planet_data[bike_name].crr
     else:
         return None, None, None, None, None
 

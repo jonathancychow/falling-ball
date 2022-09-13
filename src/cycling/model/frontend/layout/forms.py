@@ -63,8 +63,8 @@ def ball_data_form(callback_suffix):
     ]
     ball_data_form = dbc.Form(ball_data)
 
-    # bike fields
-    def get_bike_select(suffix, transition=False):
+    # planet fields
+    def get_planet_select(suffix, transition=False):
         if transition:
             suffix = suffix + '_transition'
         bike_select = dbc.Select(
@@ -74,7 +74,7 @@ def ball_data_form(callback_suffix):
         )
         return bike_select
 
-    def get_bike_data_form(suffix, transition=False):
+    def get_planet_data_form(suffix, transition=False):
         if transition:
             suffix = suffix + '_transition'
 
@@ -168,7 +168,7 @@ def ball_data_form(callback_suffix):
             ])]
     power_data_form = dbc.Form(power_data)
 
-    rider_form = [
+    ball_form = [
         # rider
         dbc.Row(
             children=[
@@ -191,12 +191,12 @@ def ball_data_form(callback_suffix):
                 dbc.Col(
                     children=[
                         dbc.Label("Planet:"),
-                        get_bike_select(callback_suffix)
+                        get_planet_select(callback_suffix)
                     ],
                     md=3
                 ),
                 dbc.Col(
-                    children=[get_bike_data_form(callback_suffix)],
+                    children=[get_planet_data_form(callback_suffix)],
                     md=9
                 )
             ],
@@ -218,4 +218,4 @@ def ball_data_form(callback_suffix):
             ],
         ),
     ]
-    return rider_form
+    return ball_form

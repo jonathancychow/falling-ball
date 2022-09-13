@@ -31,7 +31,7 @@ ball_data = {
         }
 
 # Mock bike database
-BikeData = namedtuple('BikeData',
+PlanetData = namedtuple('BikeData',
                       ['mass',
                        'cda',
                        'cda_climbing',
@@ -39,8 +39,8 @@ BikeData = namedtuple('BikeData',
                        'crr',
                        'track_mu',
                        'eff_drive'])  # schema
-bike_data = {
-    "Earth": BikeData(
+planet_data = {
+    "Earth": PlanetData(
         mass=6.47,
         cda=0.3,
         cda_climbing=0.3,
@@ -48,7 +48,7 @@ bike_data = {
         crr=0.003,
         track_mu=0.0025,
         eff_drive=0.974),
-    "Mars": BikeData(
+    "Mars": PlanetData(
         mass=8.20,
         cda=0.22,
         cda_climbing=0.3,
@@ -60,7 +60,7 @@ bike_data = {
 ball_options = sorted([{"label": key, "value": key}
                         for key in ball_data.keys()], key=lambda x: x['value'])
 planet_options = sorted([{"label": key, "value": key}
-                       for key in bike_data.keys()], key=lambda x: x['value'])
+                       for key in planet_data.keys()], key=lambda x: x['value'])
 power_options = [{"label": "Constant", "value": "Constant"}]
 
 app = dash.Dash(__name__, external_stylesheets=[bootswatch_theme])
