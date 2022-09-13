@@ -7,7 +7,7 @@ from cycling.model.frontend.layout.baseline import baseline_page_layout
 from cycling.model.frontend.layout.stage import stage_page_layout
 from cycling.model.frontend.layout.experiment import experiment_page_layout
 from cycling.model.frontend.callbacks import splash  # noqa
-from cycling.model.frontend.callbacks import stage  # noqa
+# from cycling.model.frontend.callbacks import stage  # noqa
 from cycling.model.frontend.callbacks import baseline  # noqa
 from cycling.model.frontend.callbacks import experiment  # noqa
 

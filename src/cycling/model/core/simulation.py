@@ -23,11 +23,11 @@ class Simulation:
 
     """
 
-    def __init__(self, ball, stage, environment, bike_1):
+    def __init__(self, ball, environment):
         self._ball = ball
-        self.bike_1 = bike_1
+        # self.bike_1 = bike_1
 
-        self.stage = stage
+        # self.stage = stage
         self._environment = environment
 
         # self.bike_1_total_mass = self.rider.mass + self.bike_1.mass

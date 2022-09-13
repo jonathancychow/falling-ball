@@ -6,9 +6,9 @@ import numpy as np
 from cycling.model.core.bike import Bike
 from cycling.model.core.environment import Environment
 from cycling.model.core.ball import Ball
-from cycling.model.core.stage import Stage
+# from cycling.model.core.stage import Stage
 from cycling.model.core.simulation import Simulation
-from cycling.model.core.critical_power import CriticalPowerModel
+# from cycling.model.core.critical_power import CriticalPowerModel
 from cycling.model.etl.utils import interpolate
 from cycling.model.frontend.app import ball_data, planet_data
 
@@ -155,23 +155,23 @@ def generate_baseline(
         air_density=planet_air_density
     )
     ball = Ball(name=ball_name, mass=ball_weight, radius=ball_radius, cda=ball_cd)
-    bike = Bike(
-        name=planet_name,
-        mass=planet_gravity,
-        cda=planet_mass,
-        cda_climb=planet_mass,
-        r_gradient_switch=1 /
-        100,
-        crr=1)
+    # bike = Bike(
+    #     name=planet_name,
+    #     mass=planet_gravity,
+    #     cda=planet_mass,
+    #     cda_climb=planet_mass,
+    #     r_gradient_switch=1 /
+    #     100,
+    #     crr=1)
 
     # stage = Stage(name='Stage', file_name=f'{selected_stage}.csv', s_step=50)
-    stage = None
+    # stage = None
 
     distance = np.arange(0, 100, 1)
     simulation = Simulation(
         ball=ball,
-        bike_1=bike,
-        stage=stage,
+        # bike_1=bike,
+        # stage=stage,
         environment=env)
 
     # power = power_target * np.ones(len(stage.distance))

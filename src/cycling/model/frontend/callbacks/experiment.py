@@ -9,9 +9,9 @@ import numpy as np
 from cycling.model.core.bike import Bike
 from cycling.model.core.environment import Environment
 from cycling.model.core.ball import Ball
-from cycling.model.core.stage import Stage
+# from cycling.model.core.stage import Stage
 from cycling.model.core.simulation import Simulation
-from cycling.model.core.critical_power import CriticalPowerModel
+# from cycling.model.core.critical_power import CriticalPowerModel
 from cycling.model.etl.utils import interpolate
 from cycling.model.frontend.app import ball_data, planet_data
 
@@ -145,7 +145,7 @@ def generate_experiment(
         planet_name,
         planet_gravity,
         planet_mass,
-        planet_density,
+        planet_air_density,
         planet_radius,
         # bike_gradient_climbing,
         initial_velocity,
@@ -155,25 +155,28 @@ def generate_experiment(
         selected_stage):
 
     # Run simulation
-    env = Environment()
+    env = Environment(
+        gravity=planet_gravity,
+        air_density=planet_air_density
+    )    
     ball = Ball(name=ball_name, mass=ball_weight, radius=ball_radius, cda=ball_cd)
-    bike = Bike(
-        name=ball_name,
-        mass=1,
-        cda=1,
-        cda_climb=1,
-        r_gradient_switch=1 /
-        100,
-        crr=0)
+    # bike = Bike(
+    #     name=ball_name,
+    #     mass=1,
+    #     cda=1,
+    #     cda_climb=1,
+    #     r_gradient_switch=1 /
+    #     100,
+    #     crr=0)
 
     # stage = Stage(name='Stage', file_name=f'{selected_stage}.csv', s_step=50)
-    stage = None
+    # stage = None
 
     distance = np.arange(0, 100, 1)
     simulation = Simulation(
         ball=ball,
-        bike_1=bike,
-        stage=stage,
+        # bike_1=bike,
+        # stage=stage,
         environment=env)
 
     # power = power_target * np.ones(len(stage.distance))
@@ -185,7 +188,7 @@ def generate_experiment(
     velocity, time, _, _ = simulation.solve_velocity_and_time(
         s=distance, power=power, v0=initial_velocity, t0=0)
 
-    seconds = np.arange(0, int(time[-1] + 1))
+    # seconds = np.arange(0, int(time[-1] + 1))
     # power_per_second = power_target * np.ones(len(seconds))
     # cpm = CriticalPowerModel(cp=rider_cp, w_prime=rider_w_prime)
     # w_prime_balance_per_second = cpm.w_prime_balance(power=power_per_second)
@@ -203,7 +206,6 @@ def generate_experiment(
     experiment_data['ball_name'] = ball_name
     experiment_data['planet_name'] = planet_name
     experiment_data['experiment_name'] = experiment_name
-    print("Done with sim")
 
     figure = simulation_results_plot(baseline_data, experiment_data)
     return dcc.Graph(figure=figure), experiment_data
