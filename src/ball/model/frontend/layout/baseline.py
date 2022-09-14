@@ -10,7 +10,7 @@ generate_baseline = [
     dbc.Row(
         children=[
             dbc.Col(
-                dbc.Button("Let's see how fast you can go!", id="btn_baseline", color="primary", size="lg",
+                dbc.Button("Start simulation", id="btn_baseline", color="primary", size="lg",
                            block=True, disabled=True),
                 md=12
             ),
@@ -37,7 +37,7 @@ header = [
         [
             dbc.Col(
                 [
-                    dbc.Label("Step 2 - Configure you bike and rider ", className="bold"),
+                    dbc.Label("Step 2 - Configure you ball, planet and simulation set up.", className="bold"),
                     html.P("Click on 'More' to see more variables you could change. "
                            "Once you have generated a baseline, click on 'Go to Experiment'.", className="lead"),
                 ],

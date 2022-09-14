@@ -180,13 +180,15 @@ def generate_experiment(
         environment=env)
 
     # power = power_target * np.ones(len(stage.distance))
-    power = 0 * np.ones(len(distance))
+    # power = 0 * np.ones(len(distance))
 
     # velocity, time, _, _ = simulation.solve_velocity_and_time(
     #     s=stage.distance, power=power, v0=0.1, t0=0)
 
     velocity, time, _, _ = simulation.solve_velocity_and_time(
-        s=distance, power=power, v0=initial_velocity, t0=0)
+        s=distance, 
+        # power=power, 
+        v0=initial_velocity, t0=0)
 
     # seconds = np.arange(0, int(time[-1] + 1))
     # power_per_second = power_target * np.ones(len(seconds))

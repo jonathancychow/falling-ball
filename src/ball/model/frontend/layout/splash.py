@@ -23,7 +23,7 @@ splash_layout =[
                 "The simulation models a spherical ball falling through the air under the influence of gravity and aerodynamic drag.",
                 html.Br(),
                 html.Br(),
-                "1. Set a baseline simulation",
+                "1. Set up a baseline simulation",
                 html.Br(),
                 # html.Img(src="https://www.harriswestminstersixthform.org.uk/uploads/asset_image/2_259_l.jpg",
                 #          className="lead",
@@ -32,7 +32,7 @@ splash_layout =[
                 #                 'display': 'block'}
                 #          ),
                 html.Br(),
-                "2. Change a variable and do an experiment",
+                "2. Change variables and do an experiment",
                 html.Br()
             ],
                 className="lead",

@@ -34,7 +34,7 @@ class Simulation:
         # self.bike_1_total_cda = self.rider.cda + self.bike_1.cda
         # self.bike_1_total_cda_climb = self.rider.cda + self.bike_1.cda_climb
 
-    def velocity_and_time_ode(self, s, x, power):
+    def velocity_and_time_ode(self, s, x):
         v = x[0]
         # p = interpolate(self.stage.distance, power, s)
         # fx_tyre = p / v
@@ -70,11 +70,11 @@ class Simulation:
         dtds = 1 / v
         return np.array([dvds, dtds])
 
-    def solve_velocity_and_time(self, s, power, v0, t0):
+    def solve_velocity_and_time(self, s, v0, t0):
         sol = solve_ivp(self.velocity_and_time_ode, 
                         t_span=(s[0], s[-1]), 
                         y0=np.array([v0, t0]), 
-                        args=(power,),
+                        # args=(power,),
                         max_step=100
                         )
         # sol = solve_ivp(self.velocity_and_time_ode, t_span=(s[0], s[-1]), y0=np.array([v0, t0]), args=(power,),

@@ -175,14 +175,14 @@ def generate_baseline(
         environment=env)
 
     # power = power_target * np.ones(len(stage.distance))
-    power = 0 * np.ones(len(distance))
+    # power = 0 * np.ones(len(distance))
     # print(f"{distance[0]} : {distance[-1]}")
 
     # velocity, time, _, _ = simulation.solve_velocity_and_time(
     #     s=stage.distance, power=power, v0=0.1, t0=0)
     velocity, time, _, _ = simulation.solve_velocity_and_time(
         s=distance, 
-        power=power, 
+        # power=power, 
         v0=initial_velocity, 
         t0=0
         )
