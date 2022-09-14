@@ -48,7 +48,7 @@ planet_data = {
         gravity=8.20,
         mass=6.39e23,
         radius=3389000,
-        rho=0.003,
+        rho=0.02,
         )}
 
 ball_options = sorted([{"label": key, "value": key}

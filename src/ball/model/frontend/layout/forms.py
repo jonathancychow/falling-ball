@@ -12,7 +12,7 @@ def ball_data_form(callback_suffix):
     ball_data = [
         dbc.FormGroup(
             children=[
-                dbc.Label("Weight (0.5 - 100 kg):"),
+                dbc.Label("Weight 0.5 - 100 (kg):"),
                 dbc.Input(
                     id=f"ball_weight_{callback_suffix}",
                     type="number",
@@ -32,9 +32,8 @@ def ball_data_form(callback_suffix):
                     dbc.Card(
                         dbc.FormGroup(
                             children=[
-                                dbc.Label("Radius (0.1 - 10 m):"),
+                                dbc.Label("Radius 0.1 - 10 (m):"),
                                 dbc.Input(
-                                    # id=f"rider_cp_{callback_suffix}",
                                     id=f"ball_radius_{callback_suffix}",
                                     type="number",
                                     min=0.01,
@@ -71,7 +70,7 @@ def ball_data_form(callback_suffix):
         planet_data = [
             dbc.FormGroup(
                 children=[
-                    dbc.Label("Gravity (m/s/s)):"),
+                    dbc.Label("Gravity 5 - 20 (m/s/s):"),
                     dbc.Input(
                         id=f"planet_gravity_{suffix}",
                         type="number",
@@ -91,13 +90,13 @@ def ball_data_form(callback_suffix):
                         dbc.Card(
                             dbc.FormGroup(
                                 children=[
-                                    dbc.Label("Air Density (kg/m3):"),
+                                    dbc.Label("Air Density 0 - 10 (kg/m3):"),
                                     dbc.Input(
                                         id=f"planet_density_{suffix}",
                                         type="number",
                                         min=0,
                                         max=10,
-                                        step=0.1),
+                                        step=0.01),
                                     dbc.Label("Planet Mass (kg):"),
                                     dbc.Input(
                                         id=f"planet_mass_{suffix}",
@@ -135,12 +134,12 @@ def ball_data_form(callback_suffix):
                     type="number",
                     min=0,
                     max=800,
-                    step=1),
+                    step=0.01),
             ])]
     sim_data_form = dbc.Form(sim_data)
 
     ball_form = [
-        # rider
+        # ball
         dbc.Row(
             children=[
                 dbc.Col(
