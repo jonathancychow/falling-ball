@@ -4,7 +4,7 @@ from ball.model.frontend.app import app
 from ball.model.frontend.layout.main import main_layout
 from ball.model.frontend.layout.splash import splash_layout
 from ball.model.frontend.layout.baseline import baseline_page_layout
-from ball.model.frontend.layout.stage import stage_page_layout
+# from ball.model.frontend.layout.stage import stage_page_layout
 from ball.model.frontend.layout.experiment import experiment_page_layout
 from ball.model.frontend.callbacks import splash  # noqa
 # from cycling.model.frontend.callbacks import stage  # noqa

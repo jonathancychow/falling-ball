@@ -2,7 +2,8 @@
 ![Heroku](https://heroku-badge.herokuapp.com/?app=falling-ball-simulation)
 
 # ball.model
-Model to simulate performance for cycling time trial
+
+Model to simulate a ball falling through the air under gravity. 
 
 # Deployment
 The dashboard is hosted at [Heroku](https://https://falling-ball-simulation.herokuapp.com/). 

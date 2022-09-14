@@ -5,7 +5,7 @@ from ball.model.core.ball import Ball
 
 @pytest.fixture
 def setup_ball():
-    name = 'test_bike'
+    name = 'test_ball'
     mass = 0
     cda = 0
     radius = 1
@@ -13,5 +13,5 @@ def setup_ball():
     return ball
 
 
-def test_bike_representation(setup_ball):
+def test_ball_representation(setup_ball):
     assert setup_ball.__repr__() == '<Ball: {}>'.format(setup_ball.name)

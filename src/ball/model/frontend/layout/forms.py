@@ -40,10 +40,6 @@ def ball_data_form(callback_suffix):
                                     min=0.01,
                                     max=10,
                                     step=0.005),
-                                # html.Div([
-                                #     html.A('Learn more',
-                                #            href='https://sporttracks.mobi/blog/critical-power-training',
-                                #            target='_blank')]),
                                 dbc.Label("Ball cd (-):"),
                                 dbc.Input(
                                     id=f"ball_cd_{callback_suffix}",
@@ -51,10 +47,6 @@ def ball_data_form(callback_suffix):
                                     min=0.01,
                                     max=0.9,
                                     step=0.01),
-                                # html.Div([
-                                #     html.A('Learn more',
-                                #            href="https://pezcyclingnews.com/toolbox/the-anaerobic-w/",
-                                #            target='_blank')]),
                             ]),
                     ),
                     id=f"collapse_{callback_suffix}",
@@ -65,14 +57,12 @@ def ball_data_form(callback_suffix):
 
     # planet fields
     def get_planet_select(suffix):
-        # if transition:
-        #     suffix = suffix + '_transition'
-        bike_select = dbc.Select(
+        planet_select = dbc.Select(
             id=f"planet_select_{suffix}",
             options=planet_options,
             value="Earth"
         )
-        return bike_select
+        return planet_select
 
     def get_planet_data_form(suffix):
         # if transition:
@@ -83,7 +73,6 @@ def ball_data_form(callback_suffix):
                 children=[
                     dbc.Label("Gravity (m/s/s)):"),
                     dbc.Input(
-                        # id=f"bike_weight_{suffix}",
                         id=f"planet_gravity_{suffix}",
                         type="number",
                         min=5,
@@ -104,32 +93,21 @@ def ball_data_form(callback_suffix):
                                 children=[
                                     dbc.Label("Air Density (kg/m3):"),
                                     dbc.Input(
-                                        # id=f"bike_crr_{suffix}",
                                         id=f"planet_density_{suffix}",
                                         type="number",
                                         min=0,
                                         max=10,
                                         step=0.1),
-                                    # html.Div([
-                                    #     html.A('Learn more',
-                                    #             href='https://ridefar.info/bike/cycling-speed/rolling-resistance/',
-                                    #             target='_blank')]),
                                     dbc.Label("Planet Mass (kg):"),
                                     dbc.Input(
-                                        # id=f"bike_cda_{suffix}",
                                         id=f"planet_mass_{suffix}",
                                         type="number",
                                         min=1,
                                         max=10000000,
                                         step=1),
-                                    # html.Div([
-                                    #     html.A('Learn more',
-                                    #             href='https://notio.ai/blogs/blog/what-is-cda-and-why-is-it-important-as-a-cyclist-to-measure-it',
-                                    #             target='_blank')]),
                                     dbc.Label("Planet Radius (m)"),
                                     dbc.Input(
                                         id=f"planet_raidus_{suffix}",
-                                        # id=f"bike_cda_climbing_{suffix}",
                                         type="number",
                                         min=1,
                                         max=1000000000,

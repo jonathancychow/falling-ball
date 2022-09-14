@@ -1,3 +1,4 @@
+from collections import defaultdict
 import dash_core_components as dcc
 import pandas as pd
 import dash_table
@@ -19,7 +20,7 @@ callback_suffix = 'experiment'
     [Input(f"collapse_button_planet_{callback_suffix}", "n_clicks")],
     [State(f"collapse_planet_{callback_suffix}", "is_open")],
 )
-def toggle_collapse_bike(n, is_open):
+def toggle_collapse_planet(n, is_open):
     if n:
         return not is_open
     return is_open
@@ -157,12 +158,12 @@ def generate_experiment(
             environment=env
         )
 
-    velocity, time, _, _ = simulation.solve_velocity_and_time(
+    velocity, time = simulation.solve_velocity_and_time(
             s=distance, 
             v0=initial_velocity, t0=0
         )
 
-    experiment_data = dict()
+    experiment_data = defaultdict()
     experiment_data['time'] = time.tolist()
     experiment_data['distance'] = distance.tolist()
     experiment_data['velocity'] = velocity.tolist()

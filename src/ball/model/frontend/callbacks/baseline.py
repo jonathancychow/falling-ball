@@ -1,24 +1,24 @@
+from collections import defaultdict
 import dash_core_components as dcc
 from dash.dependencies import Input, Output, State
 from ball.model.frontend.app import app
 from ball.model.frontend.plots.results import simulation_results_plot
 import numpy as np
-from ball.model.core.bike import Bike
+# from ball.model.core.bike import Bike
 from ball.model.core.environment import Environment
 from ball.model.core.ball import Ball
 from ball.model.core.simulation import Simulation
-from ball.model.etl.utils import interpolate
+# from ball.model.etl.utils import interpolate
 from ball.model.frontend.app import ball_data, planet_data
 
 callback_suffix = 'baseline'
-
 
 @app.callback(
     Output(f"collapse_planet_{callback_suffix}", "is_open"),
     [Input(f"collapse_button_planet_{callback_suffix}", "n_clicks")],
     [State(f"collapse_planet_{callback_suffix}", "is_open")],
 )
-def toggle_collapse_bike(n, is_open):
+def toggle_collapse_planet(n, is_open):
     if n:
         return not is_open
     return is_open
@@ -147,21 +147,23 @@ def generate_baseline(
         gravity=planet_gravity,
         air_density=planet_air_density
     )
+
     ball = Ball(name=ball_name, mass=ball_weight, radius=ball_radius, cda=ball_cd)
 
     distance = np.arange(0, 100, 1)
+
     simulation = Simulation(
             ball=ball,
             environment=env
         )
 
-    velocity, time, _, _ = simulation.solve_velocity_and_time(
+    velocity, time = simulation.solve_velocity_and_time(
             s=distance, 
             v0=initial_velocity, 
             t0=0
         )
 
-    baseline_data = dict()
+    baseline_data = defaultdict()
     baseline_data['time'] = time.tolist()
     baseline_data['distance'] = distance.tolist()
     baseline_data['velocity'] = velocity.tolist()

@@ -31,7 +31,7 @@ class Simulation:
         v = x[0]
       
         f_weight = self._ball.mass * self._environment.gravity
-        f_drag = (self._ball.cda * self._environment.air_density * math.pi * (self._ball.radius**2) * (v **2))
+        f_drag = self._ball.cda * self._environment.air_density * math.pi * (self._ball.radius**2) * (v **2)
         g_vert = 1 / self._ball.mass * ( f_weight - f_drag )  
 
         dvds = g_vert / v
@@ -47,4 +47,4 @@ class Simulation:
                         
         sim_v = interpolate(sol.t, sol.y[0, :], s)
         sim_t = interpolate(sol.t, sol.y[1, :], s)
-        return sim_v, sim_t, None, None
+        return sim_v, sim_t

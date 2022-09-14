@@ -15,7 +15,7 @@ with open('requirements.txt') as f:
 # https://setuptools.readthedocs.io/en/latest/setuptools.html#id9
 setup(
     name='ball.model',
-    description="Model to simulate performance for cycling time trial",
+    description="Model to simulate a ball falling through the air under gravity",
     long_description=readme,
     long_description_content_type='text/markdown',
     packages=find_packages('src'),
