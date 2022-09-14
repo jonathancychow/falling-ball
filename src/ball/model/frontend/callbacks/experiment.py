@@ -19,9 +19,9 @@ callback_suffix = 'experiment'
 
 
 @app.callback(
-    Output(f"collapse_bike_{callback_suffix}", "is_open"),
-    [Input(f"collapse_button_bike_{callback_suffix}", "n_clicks")],
-    [State(f"collapse_bike_{callback_suffix}", "is_open")],
+    Output(f"collapse_planet_{callback_suffix}", "is_open"),
+    [Input(f"collapse_button_planet_{callback_suffix}", "n_clicks")],
+    [State(f"collapse_planet_{callback_suffix}", "is_open")],
 )
 def toggle_collapse_bike(n, is_open):
     if n:
@@ -62,7 +62,7 @@ def on_ball_select(ball_name):
         Output(f"planet_gravity_{callback_suffix}", "value"),
         Output(f"planet_mass_{callback_suffix}", "value"),
         Output(f"planet_raidus_{callback_suffix}", "value"),
-        Output(f"bike_gradient_climbing_{callback_suffix}", "value"),
+        # Output(f"bike_gradient_climbing_{callback_suffix}", "value"),
         Output(f"planet_density_{callback_suffix}", "value")
     ],
     [
@@ -73,7 +73,6 @@ def on_planet_select(planet_name):
     if planet_name in planet_data.keys():
         return planet_data[planet_name].gravity, planet_data[planet_name].mass, \
                 planet_data[planet_name].radius, \
-                planet_data[planet_name].gradient_climbing, \
                 planet_data[planet_name].rho
     else:
         return None, None, None, None, None
@@ -133,7 +132,7 @@ def check_validity(*args):
         State(f"v0_{callback_suffix}", "value"),
         State("experiment_name", "value"),
         State("hidden_data", "value"),
-        State("hidden_data_stage", "value")
+        # State("hidden_data_stage", "value")
     ]
 )
 def generate_experiment(
@@ -152,7 +151,8 @@ def generate_experiment(
         # power_target,
         experiment_name,
         baseline_data,
-        selected_stage):
+        # selected_stage
+        ):
 
     # Run simulation
     env = Environment(

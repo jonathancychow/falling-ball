@@ -12,7 +12,7 @@ else:
 
 # Mock rider database
 BallData = namedtuple(
-    'RiderData', [
+    'BallData', [
         'mass', 
         'radius', 
         'cd', 
@@ -31,31 +31,34 @@ ball_data = {
         }
 
 # Mock bike database
-PlanetData = namedtuple('BikeData',
+PlanetData = namedtuple('PlanetData',
                       ['gravity',
                        'mass',
                        'radius',
-                       'gradient_climbing',
+                    #    'gradient_climbing',
                        'rho',
-                       'track_mu',
-                       'eff_drive'])  # schema
+                    #    'track_mu',
+                    #    'eff_drive'
+                       ])  # schema
 planet_data = {
     "Earth": PlanetData(
         gravity=9.81,
         mass=5.972e24,
         radius=6371000,
-        gradient_climbing=5,
+        # gradient_climbing=5,
         rho=1.2,
-        track_mu=0.0025,
-        eff_drive=0.974),
+        # track_mu=0.0025,
+        # eff_drive=0.974
+        ),
     "Mars": PlanetData(
         gravity=8.20,
         mass=6.39e23,
         radius=3389000,
-        gradient_climbing=5,
+        # gradient_climbing=5,
         rho=0.003,
-        track_mu=0.0025,
-        eff_drive=0.974)}
+        # track_mu=0.0025,
+        # eff_drive=0.974
+        )}
 
 ball_options = sorted([{"label": key, "value": key}
                         for key in ball_data.keys()], key=lambda x: x['value'])
@@ -65,7 +68,7 @@ sim_options = [{"label": "-", "value": "-"}]
 
 app = dash.Dash(__name__, external_stylesheets=[bootswatch_theme])
 
-app.title = 'Cycling Simulation'
+app.title = 'Falling Ball Simulation'
 
 app.config.suppress_callback_exceptions = True
 

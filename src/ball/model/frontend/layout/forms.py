@@ -94,7 +94,7 @@ def ball_data_form(callback_suffix):
                 children=[
                     dbc.Button(
                         "More",
-                        id=f"collapse_button_bike_{callback_suffix}",
+                        id=f"collapse_button_planet_{callback_suffix}",
                         className="mb-3",
                         color="primary",
                     ),
@@ -134,16 +134,16 @@ def ball_data_form(callback_suffix):
                                         min=1,
                                         max=1000000000,
                                         step=1),
-                                    dbc.Label("Climbing position gradient (%):"),
-                                    dbc.Input(
-                                        id=f"bike_gradient_climbing_{suffix}",
-                                        type="number",
-                                        min=0,
-                                        max=100,
-                                        step=0.1),
+                                    # dbc.Label("Climbing position gradient (%):"),
+                                    # dbc.Input(
+                                    #     id=f"bike_gradient_climbing_{suffix}",
+                                    #     type="number",
+                                    #     min=0,
+                                    #     max=100,
+                                    #     step=0.1),
                                 ]),
                         ),
-                        id=f"collapse_bike_{callback_suffix}",
+                        id=f"collapse_planet_{callback_suffix}",
                     ),
                 ]),
         ]
