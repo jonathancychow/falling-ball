@@ -25,13 +25,6 @@ splash_layout =[
                 html.Br(),
                 "1. Set up a baseline simulation",
                 html.Br(),
-                # html.Img(src="https://www.harriswestminstersixthform.org.uk/uploads/asset_image/2_259_l.jpg",
-                #          className="lead",
-                #          style={'margin-left': 'auto',
-                #                 'margin-right': 'auto',
-                #                 'display': 'block'}
-                #          ),
-                html.Br(),
                 "2. Change variables and do an experiment",
                 html.Br()
             ],
@@ -42,12 +35,6 @@ splash_layout =[
             ),
         ]
     ),
-    # dbc.Row(
-    #     children=[
-    #         dbc.Col(dbc.Button("Advanced - Explore with Python", id="notebook", color="primary", size="lg", block=True,
-    #                            href='https://mybinder.org/v2/gh/jonathancychow/cycling-simulation/main?filepath=notebooks%2Fcycling_simulation.ipynb')),
-    #     ]
-    # ),
     html.Div(dcc.Markdown('''
             &nbsp;  
             &nbsp;  

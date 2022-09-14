@@ -21,8 +21,6 @@ server = app.server
 def display_page(pathname):  # noqa
     if pathname == '/':
         return splash_layout
-    # elif pathname == '/stage':
-    #     return stage_page_layout
     elif pathname == '/baseline':
         return baseline_page_layout
     elif pathname == '/experiment':
@@ -34,21 +32,6 @@ def display_page(pathname):  # noqa
     Output('nav-items', 'children'),
     [Input('url', 'pathname')])
 def change_navbar(pathname):  # noqa
-    # if pathname == '/stage':
-    #     navbar_items = [
-    #         dbc.Col(
-    #             dbc.NavLink(
-    #                 "Stage",
-    #                 id='stage-link',
-    #                 href="stage",
-    #                 className='nav_link active')),
-    #         dbc.Col(
-    #             dbc.NavLink(
-    #                 "Baseline",
-    #                 id='baseline-link',
-    #                 href="baseline",
-    #                 className='nav_link')),
-    #     ]
     if pathname == '/baseline':
         navbar_items = [
             dbc.Col(

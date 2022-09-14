@@ -1,15 +1,16 @@
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jonathancychow/cycling-simulation/main?filepath=notebooks%2Fcycling_simulation.ipynb)
-![Heroku](https://heroku-badge.herokuapp.com/?app=cycling-sim)
 
-# cycling.model
+![Heroku](https://heroku-badge.herokuapp.com/?app=falling-ball-simulation)
+
+# ball.model
 Model to simulate performance for cycling time trial
 
 # Deployment
-The dashboard is hosted at [Heroku](https://cycling-sim.herokuapp.com/) and [AWS](http://cycle.us-east-2.elasticbeanstalk.com/).
+The dashboard is hosted at [Heroku](https://https://falling-ball-simulation.herokuapp.com/). 
 
-The jupyter notebook is hosted at Binder, please see this [link](https://mybinder.org/v2/gh/jonathancychow/cycling-simulation/main?filepath=notebooks%2Fcycling_simulation.ipynb).
 
 # Getting started
+
+`Python 3.7.13` is used for this project, please use the same version if possible to eliminate any unexpected dependency issue. 
 
 The `tox` package is used for development, test and build. Tox is a build tool for python. It allowes us to define a set of standards and configure a set of commands
 to make sure the project is maintainable by others. See also:
@@ -53,15 +54,6 @@ Start the web server
 tox -e serve
 ```
 
-### Start Jupyter Notebook
-```
-source .venv/bin/activate
-jupyter notebook
-```
-
-If you want to quickly interact with a pre-built Jupyter Notebook, you can click [here](https://mybinder.org/v2/gh/jonathancychow/cycling-simulation/main?filepath=notebooks%2Fcycling_simulation.ipynb), I have set it all up in MyBinder.
-
-A trim down notebook is set up for youngster to learn more about Python and simulation, see this [link](https://mybinder.org/v2/gh/jonathancychow/cycling-simulation/main?filepath=notebooks%2Fcycling_simulation_edu.ipynb).
 
 # Test
 ### Static code analysis - lint

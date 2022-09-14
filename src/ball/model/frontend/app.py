@@ -10,7 +10,7 @@ if THEME == 'Dark':
 else:
     bootswatch_theme = dbc.themes.BOOTSTRAP
 
-# Mock rider database
+# Mock database
 BallData = namedtuple(
     'BallData', [
         'mass', 
@@ -30,34 +30,25 @@ ball_data = {
         )
         }
 
-# Mock bike database
+# Mock database
 PlanetData = namedtuple('PlanetData',
                       ['gravity',
                        'mass',
                        'radius',
-                    #    'gradient_climbing',
                        'rho',
-                    #    'track_mu',
-                    #    'eff_drive'
                        ])  # schema
 planet_data = {
     "Earth": PlanetData(
         gravity=9.81,
         mass=5.972e24,
         radius=6371000,
-        # gradient_climbing=5,
         rho=1.2,
-        # track_mu=0.0025,
-        # eff_drive=0.974
         ),
     "Mars": PlanetData(
         gravity=8.20,
         mass=6.39e23,
         radius=3389000,
-        # gradient_climbing=5,
         rho=0.003,
-        # track_mu=0.0025,
-        # eff_drive=0.974
         )}
 
 ball_options = sorted([{"label": key, "value": key}

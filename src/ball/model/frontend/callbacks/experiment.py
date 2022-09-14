@@ -6,13 +6,9 @@ from dash.dependencies import Input, Output, State
 from ball.model.frontend.app import app
 from ball.model.frontend.plots.results import simulation_results_plot
 import numpy as np
-from ball.model.core.bike import Bike
 from ball.model.core.environment import Environment
 from ball.model.core.ball import Ball
-# from cycling.model.core.stage import Stage
 from ball.model.core.simulation import Simulation
-# from cycling.model.core.critical_power import CriticalPowerModel
-from ball.model.etl.utils import interpolate
 from ball.model.frontend.app import ball_data, planet_data
 
 callback_suffix = 'experiment'
@@ -62,7 +58,6 @@ def on_ball_select(ball_name):
         Output(f"planet_gravity_{callback_suffix}", "value"),
         Output(f"planet_mass_{callback_suffix}", "value"),
         Output(f"planet_raidus_{callback_suffix}", "value"),
-        # Output(f"bike_gradient_climbing_{callback_suffix}", "value"),
         Output(f"planet_density_{callback_suffix}", "value")
     ],
     [
@@ -127,12 +122,10 @@ def check_validity(*args):
         State(f"planet_gravity_{callback_suffix}", "value"),
         State(f"planet_mass_{callback_suffix}", "value"),
         State(f"planet_density_{callback_suffix}", "value"),
-        # State(f"bike_gradient_climbing_{callback_suffix}", "value"),
         State(f"planet_raidus_{callback_suffix}", "value"),
         State(f"v0_{callback_suffix}", "value"),
         State("experiment_name", "value"),
         State("hidden_data", "value"),
-        # State("hidden_data_stage", "value")
     ]
 )
 def generate_experiment(
@@ -146,12 +139,9 @@ def generate_experiment(
         planet_mass,
         planet_air_density,
         planet_radius,
-        # bike_gradient_climbing,
         initial_velocity,
-        # power_target,
         experiment_name,
         baseline_data,
-        # selected_stage
         ):
 
     # Run simulation
@@ -160,51 +150,22 @@ def generate_experiment(
         air_density=planet_air_density
     )    
     ball = Ball(name=ball_name, mass=ball_weight, radius=ball_radius, cda=ball_cd)
-    # bike = Bike(
-    #     name=ball_name,
-    #     mass=1,
-    #     cda=1,
-    #     cda_climb=1,
-    #     r_gradient_switch=1 /
-    #     100,
-    #     crr=0)
-
-    # stage = Stage(name='Stage', file_name=f'{selected_stage}.csv', s_step=50)
-    # stage = None
 
     distance = np.arange(0, 100, 1)
     simulation = Simulation(
-        ball=ball,
-        # bike_1=bike,
-        # stage=stage,
-        environment=env)
-
-    # power = power_target * np.ones(len(stage.distance))
-    # power = 0 * np.ones(len(distance))
-
-    # velocity, time, _, _ = simulation.solve_velocity_and_time(
-    #     s=stage.distance, power=power, v0=0.1, t0=0)
+            ball=ball,
+            environment=env
+        )
 
     velocity, time, _, _ = simulation.solve_velocity_and_time(
-        s=distance, 
-        # power=power, 
-        v0=initial_velocity, t0=0)
+            s=distance, 
+            v0=initial_velocity, t0=0
+        )
 
-    # seconds = np.arange(0, int(time[-1] + 1))
-    # power_per_second = power_target * np.ones(len(seconds))
-    # cpm = CriticalPowerModel(cp=rider_cp, w_prime=rider_w_prime)
-    # w_prime_balance_per_second = cpm.w_prime_balance(power=power_per_second)
-    # w_prime_balance = interpolate(seconds, w_prime_balance_per_second, time)
     experiment_data = dict()
     experiment_data['time'] = time.tolist()
-    # experiment_data['distance'] = stage.distance.tolist()
     experiment_data['distance'] = distance.tolist()
-
     experiment_data['velocity'] = velocity.tolist()
-    # experiment_data['elevation'] = stage.elevation.tolist()
-    # experiment_data['elevation'] = distance.tolist()
-
-    # experiment_data['w_prime_balance'] = w_prime_balance
     experiment_data['ball_name'] = ball_name
     experiment_data['planet_name'] = planet_name
     experiment_data['experiment_name'] = experiment_name
@@ -222,7 +183,6 @@ def update_table(baseline_data, experiment_data, data):
     baseline_data = pd.DataFrame(baseline_data)
     baseline_data = baseline_data[[
         'experiment_name', 'ball_name', 'planet_name', 'time', 
-        # 'w_prime_balance'
         ]]
 
     if data is None:
@@ -232,48 +192,10 @@ def update_table(baseline_data, experiment_data, data):
         experiment_data = pd.DataFrame(experiment_data)
         experiment_data = experiment_data[[
             'experiment_name', 'ball_name', 'planet_name', 'time', 
-            # 'w_prime_balance'
             ]]
         experiment_data = experiment_data.tail(1)
         data = data.append(experiment_data, ignore_index=True)
         baseline_time = data['time'].iloc[0]
-    #     baseline_pb = data['w_prime_balance'].iloc[0]
-    #     style_data_conditional = [
-    #         {
-    #             'if': {
-    #                 'column_id': 'time',
-    #                 'filter_query': '{time} < ' + str(baseline_time)
-    #             },
-    #             'backgroundColor': '#3D9970',
-    #             'color': 'white',
-    #         },
-    #         {
-    #             'if': {
-    #                 'column_id': 'w_prime_balance',
-    #                 'filter_query': '{w_prime_balance} >' + str(baseline_pb)
-    #             },
-    #             'backgroundColor': '#3D9970',
-    #             'color': 'white',
-    #         },
-    #         {
-    #             'if': {
-    #                 'column_id': 'time',
-    #                 'filter_query': '{time} > ' + str(baseline_time)
-    #             },
-    #             'backgroundColor': '#e0001c',
-    #             'color': 'white',
-    #         },
-    #         {
-    #             'if': {
-    #                 'column_id': 'w_prime_balance',
-    #                 'filter_query': '{w_prime_balance} < ' + str(baseline_pb)
-    #             },
-    #             'backgroundColor': '#e0001c',
-    #             'color': 'white',
-    #         }
-    #     ]
-    # else:
-    #     style_data_conditional = []
 
     unit = ['', '', '', u's', u'J']
     table = dash_table.DataTable(
@@ -291,7 +213,6 @@ def update_table(baseline_data, experiment_data, data):
         editable=True,
         style_as_list_view=True,
         style_header={'fontWeight': 'bold'},
-        # style_data_conditional=style_data_conditional
     )
 
     return table  # , data TODO: still needs to be fixed
