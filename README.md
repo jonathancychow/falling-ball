@@ -6,7 +6,7 @@
 Model to simulate a ball falling through the air under gravity. 
 
 # Deployment
-The dashboard is hosted at [Heroku](https://https://falling-ball-simulation.herokuapp.com/). 
+The dashboard is hosted at [Heroku](https://falling-ball-simulation.herokuapp.com/). 
 
 
 # Getting started
